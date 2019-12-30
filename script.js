@@ -26,7 +26,7 @@ function generate(){
 
 $(document).ready(function(){
   $(".editable").bind("dblclick", replaceHTML);
-  generate();
+  //generate();
 });
 
 function nuevoPartido() {
