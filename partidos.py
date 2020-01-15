@@ -21,21 +21,18 @@ class Nodo:
 
     def Arbol(self, listaBajada, listaSubida):
         listaBajada.remove(self.partido)
-        listaSubida.append(self)
+        listaSubida.append(self.partido)
         listaOpciones = []
 
         for p in listaBajada:
             n = Nodo(p)
             listaOpciones.append(n.Arbol(listaBajada.copy(), listaSubida.copy()))
             self.hijos.append(n)
+
         listaOpciones.append([])
-        listaOpciones.append(listaBajada)
+        listaOpciones.append(listaSubida)
         print(listaOpciones)
         return self.partido.preguntar(listaOpciones)
-
-
-
-
 
 
 
@@ -59,7 +56,7 @@ class Partido:
                 if l == lista:
                     return l
         return listaOpciones[0]
-
+"""
     def __eq__(self, other):
         if self.seats == other.seats:
             return True
@@ -81,7 +78,7 @@ class Partido:
 
     def __le__(self, other):
         return self.__cmp__(other) <= 0
-
+"""
 def shapley(weight, quota):
     """
     Calculator for the shapley-shubik index of each player.
@@ -293,8 +290,9 @@ a.P.append(b)
 a.P.append("")
 a.P.append(c)
 
-a.P = [[a], [a, b], [], [b, a], [c, a], [b, c], [c, b], [b], [c]]
-b.P = [[b], [b, a], [], [a, b], [c, b], [a, c], [c, a], [c], [b]]
+a.P = [[a, b], [a], [], [b, a], [c, a], [b, c], [c, b], [b], [c]]
+b.P = [[a, b], [b], [b, a], [], [c, b], [a, c], [c, a], [c], [a]]
+#b.P = [[b], [b, a], [], [a, b], [c, b], [a, c], [c, a], [c], [b]]
 c.P = [[c], [c, b], [c, a], [c, b], [], [b, a], [b, c], [b], [a]]
 
 l = Nodo(a)
@@ -307,4 +305,7 @@ l = Nodo(a)
 #print(r.hijos)
 #print(l.hijos)
 
-l.Arbol([a, b, c], [])
+lista = l.Arbol([a, b, c], [])
+print("------")
+for p in lista:
+    print(p.name)
