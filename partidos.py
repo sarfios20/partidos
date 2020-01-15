@@ -48,13 +48,22 @@ class Partido:
         self.name = name
         self.seats = seats
         self.P = []
+    def check(self, listaCoalicion):
+        seats = 0
+        for p in listaCoalicion:
+            seats = seats + p.seats
+        if seats >= mayoria:
+            return True
+        return False
+
     def visitar(self):
         print(self.name)
     def preguntar(self, listaOpciones):
         for l in self.P:
             for lista in listaOpciones:
-                if l == lista:
-                    return l
+                if self.check(lista):
+                    if l == lista:
+                        return l
         return listaOpciones[0]
 """
     def __eq__(self, other):
@@ -280,11 +289,11 @@ def is_critical(player, players, coalition, quota):
 
 
 
-a = Partido("a", 175)
+a = Partido("a", 1)
 b = Partido("b", 1)
 c = Partido("c", 1)
 
-
+mayoria = 176
 
 a.P.append(b)
 a.P.append("")
