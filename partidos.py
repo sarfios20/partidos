@@ -289,8 +289,8 @@ def is_critical(player, players, coalition, quota):
 
 
 
-a = Partido("a", 1)
-b = Partido("b", 1)
+a = Partido("a", 170)
+b = Partido("b", 6)
 c = Partido("c", 1)
 
 mayoria = 176
@@ -300,8 +300,8 @@ a.P.append("")
 a.P.append(c)
 
 a.P = [[a, b], [a], [], [b, a], [c, a], [b, c], [c, b], [b], [c]]
-b.P = [[a, b], [b], [b, a], [], [c, b], [a, c], [c, a], [c], [a]]
-#b.P = [[b], [b, a], [], [a, b], [c, b], [a, c], [c, a], [c], [b]]
+#b.P = [[a, b], [b], [b, a], [], [c, b], [a, c], [c, a], [c], [a]]
+b.P = [[b], [b, a], [], [a, b], [c, b], [a, c], [c, a], [a], [c]]
 c.P = [[c], [c, b], [c, a], [c, b], [], [b, a], [b, c], [b], [a]]
 
 l = Nodo(a)
