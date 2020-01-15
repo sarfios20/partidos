@@ -19,6 +19,26 @@ class Nodo:
             n.explorar(operation)
         operation(self.partido)
 
+    def Arbol(self, listaBajada, listaSubida):
+        listaBajada.remove(self.partido)
+        listaSubida.append(self)
+        listaOpciones = []
+
+        for p in listaBajada:
+            n = Nodo(p)
+            listaOpciones.append(n.Arbol(listaBajada.copy(), listaSubida.copy()))
+            self.hijos.append(n)
+        listaOpciones.append([])
+        listaOpciones.append(listaBajada)
+        print(listaOpciones)
+        return self.partido.preguntar(listaOpciones)
+
+
+
+
+
+
+
     def crearArbol(self, listaBajada):
         listaBajada.remove(self.partido)
         for p in listaBajada:
@@ -33,14 +53,12 @@ class Partido:
         self.P = []
     def visitar(self):
         print(self.name)
-    def preguntar(self, listaA, listaB):
+    def preguntar(self, listaOpciones):
         for l in self.P:
-            if listaA == l:
-                return l
-            if listaB == l:
-                return l
-        return listaA
-        print(self.name)
+            for lista in listaOpciones:
+                if l == lista:
+                    return l
+        return listaOpciones[0]
 
     def __eq__(self, other):
         if self.seats == other.seats:
@@ -281,10 +299,12 @@ c.P = [[c], [c, b], [c, a], [c, b], [], [b, a], [b, c], [b], [a]]
 
 l = Nodo(a)
 
-l.crearArbol([a, b, c])
-l.explorar(Partido.visitar)
+#l.crearArbol([a, b, c])
+#l.explorar(Partido.visitar)
 
 #map = shapley([a.seats, b.seats, c.seats], 176)
 #print(list(map))
 #print(r.hijos)
 #print(l.hijos)
+
+l.Arbol([a, b, c], [])
