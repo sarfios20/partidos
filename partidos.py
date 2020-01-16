@@ -317,4 +317,4 @@ l = Nodo(a)
 lista = l.Arbol([a, b, c], [])
 print("------")
 for p in lista:
-    print(p.name)
+    print(p.name, end="")
