@@ -15,8 +15,6 @@ function python() {
 //		data: {id: ID} ,
         success: function (response) {
 			console.log(response)
-            return "return";
-
         },
         error: function(jqXHR, textStatus, errorThrown) {
            //console.log(textStatus, errorThrown);

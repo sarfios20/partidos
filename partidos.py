@@ -31,7 +31,6 @@ class Nodo:
 
         listaOpciones.append([])
         listaOpciones.append(listaSubida)
-        print(listaOpciones)
         return self.partido.preguntar(listaOpciones)
 
 
@@ -295,10 +294,6 @@ c = Partido("c", 1)
 
 mayoria = 176
 
-a.P.append(b)
-a.P.append("")
-a.P.append(c)
-
 a.P = [[a, b], [a], [], [b, a], [c, a], [b, c], [c, b], [b], [c]]
 #b.P = [[a, b], [b], [b, a], [], [c, b], [a, c], [c, a], [c], [a]]
 b.P = [[b], [b, a], [], [a, b], [c, b], [a, c], [c, a], [a], [c]]
@@ -315,6 +310,5 @@ l = Nodo(a)
 #print(l.hijos)
 
 lista = l.Arbol([a, b, c], [])
-print("------")
 for p in lista:
     print(p.name, end="")
