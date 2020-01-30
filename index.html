@@ -29,19 +29,19 @@
 <body>
 <div id=listas>
   <div id="Partido1">
-    <h2>Partido1</h2>
+    <h2 class="editable" data-name="Partido1">Partido1</h2>
     <ul id="sortable3" class="sec">
-      <li class="ui-state-default">Partido1</li>
-      <li class="ui-state-default">Elecciones</li>
-      <li class="ui-state-default">Partido2</li>
+      <li class="ui-state-default" data-name="Partido1">Partido1</li>
+      <li class="ui-state-default" data-name="Elecciones">Elecciones</li>
+      <li class="ui-state-default" data-name="Partido2">Partido2</li>
     </ul>
   </div>
   <div id="Partido2">
-    <h2>Partido2</h2>
+    <h2 class="editable" data-name="Partido2">Partido2</h2>
     <ul id="sortable3" class="sec">
-      <li class="ui-state-default">Partido2</li>
-      <li class="ui-state-default">Elecciones</li>
-      <li class="ui-state-default">Partido1</li>
+      <li class="ui-state-default" data-name="Partido2">Partido2</li>
+      <li class="ui-state-default" data-name="Elecciones">Elecciones</li>
+      <li class="ui-state-default" data-name="Partido1">Partido1</li>
     </ul>
   </div>
 </div>
@@ -49,18 +49,18 @@
 <button onclick="python()">ajax</button>
  
 <div class="PartidoContainer" id=Partido1>
-<h2 class="PartidoName editable">Partido1</h2>
+<h2 class="PartidoName editable" data-name="Partido1">Partido1</h2>
 <ul id="sortable1" class="sec">
   <li>
     <ul id="sortable3" class="connectedSortable">
       <h2 class="ui-state-disabled">Gobernar</h2>
-      <li class="ui-state-default">Partido1</li>
+      <li class="ui-state-default" data-name="Partido1">Partido1</li>
     </ul>
   </li>
   <li>
     <ul id="sortable3" class="connectedSortable">
       <h2 class="ui-state-disabled">Gobernar coalicion</h2>
-      <li class="ui-state-default">Partido1</li>
+      <li class="ui-state-default" data-name="Partido1">Partido1</li>
       <li class="ui-state-default">Partido2</li>
 
     </ul>

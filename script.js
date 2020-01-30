@@ -129,18 +129,28 @@ function nuevoPartido() {
 }
 
 function replaceHTML(){
-        oldText = $(this).html().replace(/"/g, "");
-        $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
+
+    oldText = $(this).html().replace(/"/g, "");
+    $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
 }
 
 $(document).on("click", ".btnSave",
     function()
     {
+    	var msglist = $(this).parent();
+
+		var show = msglist.data("name");
+
+		
         newText = $(this).siblings("form")
                          .children(".editBox")
                          .val().replace(/"/g, "");
                           
         $(this).parent()
                .html(newText);
+        lel = "."+show;
+        console.log(lel);
+        console.log($('[data-name="'+show+'"]'))
+        $('[data-name="'+show+'"]').html(newText)
     }
 );
