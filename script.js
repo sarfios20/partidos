@@ -134,6 +134,17 @@ function replaceHTML(){
     $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
 }
 
+function change(elemt){
+    console.log(elemt);
+
+    if (elemt.style.color != "red"){
+    	elemt.style.color = "red";
+    }else{
+    	elemt.style.color = "black";
+    }
+    
+}
+
 $(document).on("click", ".btnSave",
     function()
     {
