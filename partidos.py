@@ -19,6 +19,17 @@ class Nodo:
             n.explorar(operation)
         operation(self.partido)
 
+    def apoyo(self, listageneral):
+
+        listaSubida = []
+        listaSubida.append(self)
+
+        for n in self.hijos:
+            listaSubida.append(n)
+            listageneral.append(listaSubida)
+            n.apoyo(listageneral)
+
+
     def Arbol(self, listaBajada, listaSubida):
         listaBajada.remove(self.partido)
         listaSubida.append(self.partido)
@@ -312,3 +323,17 @@ l = Nodo(a)
 lista = l.Arbol([a, b, c], [])
 for p in lista:
     print(p.name, end="")
+
+
+print("--------")
+
+listageneral = []
+nodo = Nodo(a)
+
+nodo.crearArbol([a, b, c])
+nodo.apoyo(listageneral)
+
+for lista in listageneral:
+    for p in lista:
+        print(p.partido.name, end="")
+    print("")
