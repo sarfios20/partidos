@@ -165,3 +165,103 @@ $(document).on("click", ".btnSave",
         $('[data-name="'+show+'"]').html(newText)
     }
 );
+
+function test(){
+	lista = listaPartido("Partido2");
+    console.log(lista);
+    gobierno("Partido2", lista)
+}
+
+function listaPartido(partido){
+	//lista = $('li[style=color:red]');
+    div = $('div > [data-name="'+partido+'"]').parent();
+
+    lista = div.children("ul").children("li");
+
+    return lista;
+    
+    
+}
+
+function gobierno(partido, lista){
+	listaSinRojos = lista.filter(function( index ) {
+    			return $(this).css('color') === 'rgb(0, 0, 0)'
+  			});
+	listaArray = [];
+	listaSinRojos.each(function( index ) {
+    	listaArray.push($(this).text());
+  	});
+  	var listaArray = listaArray.filter(function(e) { return e !== 'Elecciones' })
+
+	console.log(listaArray);
+
+	arrayGobierno = [];
+	listaArray.forEach(function(element) {
+		if (element != listaArray[0]){
+			arrayGobierno.push(listaArray[0]+","+element);
+		}else{
+			arrayGobierno.push(listaArray[0]);
+		}
+  	});
+
+	console.log(arrayGobierno);
+
+/*
+	nuevolp = listaArray.slice(1);
+	console.log(nuevolp);
+
+	arraytest =[]
+	append = listaArray[0];
+
+	nop = nuevolp.slice();
+
+	for (i = 0; i < nuevolp.length; i++) {
+  		nuevolp.forEach(function(element) {
+			arraytest.push(append+","+element)
+  		});
+  		append = append+","+nuevolp[0];
+  		nuevolp.shift();
+	}
+*/
+	arraytest =[]
+	recursive(listaArray.slice(1), arraytest);
+	console.log("------------");
+	console.log(arraytest);
+	
+
+
+
+}
+
+function recursive(array, gobierno){
+//ESTO MEJOR EN PYTHON
+	if (array.length == 1){
+		return array[0];
+	}
+
+	p = array[0];
+  	array.forEach(function(element) {
+  		const index = array.indexOf(element);
+		if (index > -1) {
+  			array.splice(index, 1);
+		}
+		append = recursive(array.slice());
+		gobierno.push(p+","+element)
+  	});
+
+}
+
+function glob(partido, lista){
+	listaSinRojos = lista.filter(function( index ) {
+    			return $(this).css('color') === 'rgb(0, 0, 0)'
+  			});
+	listaArray = [];
+	listaSinRojos.each(function( index ) {
+    	listaArray.push($(this).text());
+  	});
+
+	console.log(listaArray);
+	slice = listaArray.indexOf("Elecciones");
+	listaAmigos = listaArray.slice(0, slice);
+	console.log(listaAmigos);
+}
