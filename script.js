@@ -184,17 +184,41 @@ function listaPartido(partido){
 }
 
 function gobierno(partido, lista){
+
 	listaSinRojos = lista.filter(function( index ) {
     			return $(this).css('color') === 'rgb(0, 0, 0)'
   			});
+
 	listaArray = [];
 	listaSinRojos.each(function( index ) {
     	listaArray.push($(this).text());
   	});
   	var listaArray = listaArray.filter(function(e) { return e !== 'Elecciones' })
 
-	console.log(listaArray);
+  nuevolp = listaArray.slice(1);
+  gobi = nuevolp[0];
+  arraytest = [];
 
+  listaListas = []
+  loop(arraytest, [nuevolp, [listaArray[0]]]);
+  safeguard = arraytest.slice();
+
+
+  for (i = 0; i < arraytest.length; i++) {
+
+    arraytest.forEach(function( element ) {
+      loop(arraytest, [element, [listaArray[0]]]);
+    });
+    arraytest = safeguard.slice();
+  }
+
+  console.log(arraytest);
+
+}
+
+
+
+/*
 	arrayGobierno = [];
 	listaArray.forEach(function(element) {
 		if (element != listaArray[0]){
@@ -206,12 +230,57 @@ function gobierno(partido, lista){
 
 	console.log(arrayGobierno);
 
+  nuevolp = listaArray.slice();
+
+  arraytest = [nuevolp[0]];
+  con = nuevolp[0];
+  for (i = 0; i < nuevolp.length; i++) {
+
+    nuevolp.forEach(function(e) {
+      lista1 = [con, e];
+      lista2 = nuevolp.slice(e, 1);
+
+      loop(arraytest, lista1, lista2);
+    });
+
+  }
+
+  console.log("************");
+  console.log(arraytest);
+  
+
+*/
+function loop(array, listaListas){
+
+  lel = allPossibleCombinations(listaListas);
+  lel.forEach(function(element) {
+    array.push(element.join());
+  });
+}
+
+function kk(){
+
+var a = [
+  ["B","C","D"],
+  ["B","C","D"],
+  ["B","C","D"],
+  ["A"],
+]
+
+console.log(allPossibleCombinations(a));
+console.log(allPossibleCombinations(a).length);
+
+}
+
+
 /*
+
 	nuevolp = listaArray.slice(1);
 	console.log(nuevolp);
 
-	arraytest =[]
+	
 	append = listaArray[0];
+  arraytest =[append]
 
 	nop = nuevolp.slice();
 
@@ -222,16 +291,16 @@ function gobierno(partido, lista){
   		append = append+","+nuevolp[0];
   		nuevolp.shift();
 	}
-*/
+  console.log("------------");
+  console.log(arraytest);
+
+/*
 	arraytest =[]
-	recursive(listaArray.slice(1), arraytest);
+	//recursive(listaArray.slice(1), arraytest);
 	console.log("------------");
-	console.log(arraytest);
+	*/
 	
 
-
-
-}
 
 function recursive(array, gobierno){
 //ESTO MEJOR EN PYTHON
@@ -255,13 +324,54 @@ function glob(partido, lista){
 	listaSinRojos = lista.filter(function( index ) {
     			return $(this).css('color') === 'rgb(0, 0, 0)'
   			});
+
 	listaArray = [];
+
 	listaSinRojos.each(function( index ) {
     	listaArray.push($(this).text());
   	});
 
 	console.log(listaArray);
+
 	slice = listaArray.indexOf("Elecciones");
 	listaAmigos = listaArray.slice(0, slice);
+
 	console.log(listaAmigos);
 }
+
+
+
+function allPossibleCombinations(items, isCombination=false){
+    // finding all possible combinations of the last 2 items
+    // remove those 2, add these combinations
+    // isCombination shows if the last element is itself part of the combination series
+    if(items.length == 1){
+       return items[0]
+    }
+    else if(items.length == 2){
+       var combinations = []
+       for (var i=0; i<items[1].length; i++){
+           for(var j=0; j<items[0].length; j++){
+               if(isCombination){
+                   // clone array to not modify original array
+                   var combination = items[1][i].slice();
+                   combination.push(items[0][j]);
+               }
+               else{
+                   var combination = [items[1][i], items[0][j]];
+               }
+               combinations.push(combination);
+           }
+       }
+       return combinations
+    }
+    else if(items.length > 2){
+       var last2 = items.slice(-2);
+       var butLast2 = items.slice(0, items.length - 2);
+       last2 = allPossibleCombinations(last2, isCombination);
+       butLast2.push(last2)
+       var combinations = butLast2;
+       return allPossibleCombinations(combinations, isCombination=true)
+    }
+}
+
