@@ -2,6 +2,7 @@ from itertools import combinations
 from operator import itemgetter
 from math import factorial
 import collections
+from collections import Counter
 
 class Nodo:
     def __init__(self, partido, hijos=None):
@@ -72,8 +73,14 @@ class Partido:
         for l in self.P:
             for lista in listaOpciones:
                 if self.check(lista):
-                    if l == lista:
-                        return l
+                    print(l)
+                    if len(l) == 0 or len(lista) == 0:
+                        if l == lista:
+                            return l
+                    else:
+                        if l[0] != lista[0]:
+                            if Counter(l) == Counter(lista):
+                                return l
         return listaOpciones[0]
 """
     def __eq__(self, other):
@@ -337,3 +344,11 @@ for lista in listageneral:
     for p in lista:
         print(p.partido.name, end="")
     print("")
+
+
+print("--------")
+
+if (Counter([a, b, c]) == Counter([a, c, b])):
+    print("guay")
+print(Counter([a, b, c]))
+print(Counter([a, c, b]))
