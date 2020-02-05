@@ -199,30 +199,44 @@ function gobierno(partido, lista){
   gol = nuevolp[0];
   console.log(gol);
 
-  cojones = [nuevolp[0]];
+  cojones = [listaArray[0]];
   //cojones.pop();
-  console.log(cojones);
+  console.log(JSON.stringify(partido));
 
   arraytest = [];
 
 
 
-  listaListas = []
-  lista2 = [listaArray[0]]
-
-
-  
   console.log("************");
 
+  for (i = 0; i < cojones.length; i++) {
+    resultado = cojones[i];
+    console.log(JSON.stringify(cojones));
+    loop(cojones, [remove(nuevolp.slice(), resultado),resultado])
+  }
+
+
+/*
   cojones.forEach(function( resultado ) {
-      loop(cojones, [nuevolp.slice(resultado, 1),cojones])
-  });
+    console.log(JSON.stringify(cojones));
+    loop(cojones, [nuevolp.slice(resultado, 1),cojones])
+  });*/
   console.log("************");
   console.log(cojones);
-  cojones = null;
+
 
 }
 
+
+function remove(array, remove){
+
+  listaRemove = remove.split(",");
+
+  listaRemove.forEach(function( e ) {
+    array.splice(e, 1);
+  });
+  return array
+}
 
 
 /*
