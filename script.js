@@ -196,23 +196,30 @@ function gobierno(partido, lista){
   	var listaArray = listaArray.filter(function(e) { return e !== 'Elecciones' })
 
   nuevolp = listaArray.slice(1);
-  gobi = nuevolp[0];
+  gol = nuevolp[0];
+  console.log(gol);
+
+  cojones = [nuevolp[0]];
+  //cojones.pop();
+  console.log(cojones);
+
   arraytest = [];
 
+
+
   listaListas = []
-  loop(arraytest, [nuevolp, [listaArray[0]]]);
-  safeguard = arraytest.slice();
+  lista2 = [listaArray[0]]
 
 
-  for (i = 0; i < arraytest.length; i++) {
+  
+  console.log("************");
 
-    arraytest.forEach(function( element ) {
-      loop(arraytest, [element, [listaArray[0]]]);
-    });
-    arraytest = safeguard.slice();
-  }
-
-  console.log(arraytest);
+  cojones.forEach(function( resultado ) {
+      loop(cojones, [nuevolp.slice(resultado, 1),cojones])
+  });
+  console.log("************");
+  console.log(cojones);
+  cojones = null;
 
 }
 
@@ -250,6 +257,8 @@ function gobierno(partido, lista){
   
 
 */
+
+
 function loop(array, listaListas){
 
   lel = allPossibleCombinations(listaListas);
