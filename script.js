@@ -172,6 +172,7 @@ function test(){
     console.log(lista);
     gobierno("Partido2", lista)
     */
+
 	lista = listaPartido("Partido2");
 	console.log(lista);
 
@@ -197,14 +198,35 @@ function test(){
 	console.log(listanombresGob);
 
 */
+	p = listaArray.splice(0, 1);
 	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
+	
 	console.log(listaArray);
 
- 	for (i = 0; i < listaArray.length; i++) {
- 		
+	result = [];
+	
+	lorol = [];
+
+ 	for (i = 1; i < listaArray.length+1; i++) {  
+ 		result.length = i; //n=2
+		combine( listaArray, result.length, 0, result);
+
 	}
+	console.log(lorol);
 
 }
+
+function combine(input, len, start, result) {
+  if(len === 0) {
+    lorol.push("Partido2".concat(result.join("")));
+    return;
+  }
+  for (let i = start; i <= input.length - len; i++) {
+    result[result.length - len] = input[i];
+    combine(input, len-1, i+1, result);
+  }
+}
+
 
 function listaPartido(partido){
 	//lista = $('li[style=color:red]');
