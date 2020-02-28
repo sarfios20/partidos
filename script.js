@@ -167,19 +167,51 @@ $(document).on("click", ".btnSave",
 );
 
 function test(){
+	/*
 	lista = listaPartido("Partido2");
     console.log(lista);
     gobierno("Partido2", lista)
+    */
+	lista = listaPartido("Partido2");
+	console.log(lista);
+
+	listaSinRojos = lista.filter(function( index ) {
+    			return $(this).css('color') === 'rgb(0, 0, 0)'
+  			});
+
+
+	listaArray = [];
+	listaSinRojos.each(function( index ) {
+    	listaArray.push($(this).text());
+  	});
+/*
+  	console.log(listaArray);
+
+  	index = listaArray.indexOf("Elecciones");
+	console.log(index);
+
+	listanombresGob = listaArray.slice(0, index);
+	listaGob = listaSinRojos.slice(0, index);
+	console.log(listaGob);
+	console.log("************");
+	console.log(listanombresGob);
+
+*/
+	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
+	console.log(listaArray);
+
+ 	for (i = 0; i < listaArray.length; i++) {
+ 		
+	}
+
 }
 
 function listaPartido(partido){
 	//lista = $('li[style=color:red]');
     div = $('div > [data-name="'+partido+'"]').parent();
-
     lista = div.children("ul").children("li");
 
     return lista;
-    
     
 }
 
