@@ -23,8 +23,6 @@ function python() {
     });
 }
 
-
-
 function generate(){
 	var count = $("#listas").length;
 	$("#listas").each(function(){
@@ -53,7 +51,6 @@ function nuevoPartido() {
   console.log(count)
   count = count + 1;
   //html = '<div class="PartidoContainer" id="Partido'+count+'">Partido'+count+'</div>';
-
 
   html = '<div class="PartidoContainer" id=Partido'+count+'>\
   <h2 class="PartidoName editable">Partido'+count+'</h2>\
@@ -112,8 +109,7 @@ function nuevoPartido() {
 </div>';
 
 
-
-  $(document.body)[0].insertAdjacentHTML('beforeend', html);
+ $(document.body)[0].insertAdjacentHTML('beforeend', html);
   $( function() {
     $( ".sec" ).sortable();
     $( ".connectedSortable" ).sortable({
@@ -123,13 +119,9 @@ function nuevoPartido() {
       connectWith: ".connectedSortable"
     }).disableSelection();
   } );
-	//var d1 = document.getElementById('one');
-	//d1.insertAdjacentHTML('beforeend', '<div id="two">two</div>');
-
 }
 
 function replaceHTML(){
-
     oldText = $(this).html().replace(/"/g, "");
     $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
 }
@@ -142,7 +134,6 @@ function change(elemt){
     }else{
     	elemt.style.color = "black";
     }
-    
 }
 
 $(document).on("click", ".btnSave",
@@ -152,7 +143,6 @@ $(document).on("click", ".btnSave",
 
 		var show = msglist.data("name");
 
-		
         newText = $(this).siblings("form")
                          .children(".editBox")
                          .val().replace(/"/g, "");
@@ -174,7 +164,6 @@ function test(){
     			return $(this).css('color') === 'rgb(0, 0, 0)'
   			});
 
-
 	listaArray = [];
 	listaSinRojos.each(function( index ) {
     	listaArray.push($(this).text());
@@ -194,17 +183,13 @@ function test(){
 */
 	p = listaArray.splice(0, 1);
 	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
-	
 	console.log(listaArray);
-
 	result = [];
-	
 	lorol = [];
 
  	for (i = 1; i < listaArray.length+1; i++) {  
  		result.length = i; //n=2
 		combine( listaArray, result.length, 0, result);
-
 	}
 	console.log(lorol);
 }
@@ -220,9 +205,7 @@ function combine(input, len, start, result) {
   }
 }
 
-
 function listaPartido(partido){
-	//lista = $('li[style=color:red]');
     div = $('div > [data-name="'+partido+'"]').parent();
     lista = div.children("ul").children("li");
 
