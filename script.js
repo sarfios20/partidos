@@ -39,6 +39,7 @@ function generate(){
 
 $(document).ready(function(){
   $(".editable").bind("dblclick", replaceHTML);
+  console.log("hey");
   //generate();
 });
 
