@@ -38,8 +38,18 @@ function generate(){
 }
 
 $(document).ready(function(){
-  $(".editable").bind("dblclick", replaceHTML);
-  console.log("hey");
+ 	$(".editable").bind("dblclick", replaceHTML);
+  	console.log("hey");
+
+  	listaPartidos = $('#listas h2').map(function() {
+    return $(this).text();
+	}).get();
+
+  	listaPartidos.forEach(function( index ) {
+  		console.log("-----------------");
+    	generate(index);
+  	});
+
   //generate();
 });
 
@@ -157,6 +167,34 @@ $(document).on("click", ".btnSave",
     }
 );
 
+function generate(partido){
+	lista = listaPartido(partido);
+
+	
+
+	listaSinRojos = lista.filter(function( index ) {
+    			return $(this).css('color') === 'rgb(0, 0, 0)'
+  			});
+
+	listaArray = [];
+	listaSinRojos.each(function( index ) {
+    	listaArray.push($(this).text());
+  	});
+
+  	listaArray.splice(partido, 1);
+	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
+	result = [];
+	lorol = [];
+
+ 	for (i = 1; i < listaArray.length+1; i++) {  
+ 		result.length = i; //n=2
+		combine(partido, listaArray, result.length, 0, result);
+	}
+	console.log(lorol);
+
+}
+
+
 function test(){
 	lista = listaPartido("Partido2");
 	console.log(lista);
@@ -195,19 +233,19 @@ function test(){
 	console.log(lorol);
 }
 
-function combine(input, len, start, result) {
+function combine(partido, input, len, start, result, p) {
   if(len === 0) {
-    lorol.push("Partido2,".concat(result.join(",")));
+    lorol.push(partido.concat(",").concat(result.join(",")));
     return;
   }
   for (let i = start; i <= input.length - len; i++) {
     result[result.length - len] = input[i];
-    combine(input, len-1, i+1, result);
+    combine(partido, input, len-1, i+1, result);
   }
 }
 
 function listaPartido(partido){
-    div = $('div > [data-name="'+partido+'"]').parent();
+    div = $('#listas div > [data-name="'+partido+'"]').parent();
     lista = div.children("ul").children("li");
 
     return lista;
