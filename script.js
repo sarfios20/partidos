@@ -47,24 +47,26 @@ $(document).ready(function(){
 
   	listaPartidos.forEach(function( index ) {
   		console.log("-----------------");
-    	generate(index);
+    	rekt = generate(index);
+    	console.log(rekt);
+
+    	gob(index, rekt);
   	});
+
+
 
   //generate();
 });
 
-function nuevoPartido() {
-  console.log("crear listas");
-  console.log("añadirlas");
-  console.log("reset listas anteriores");
+function gob(partido, lista){
+	elemt = $('.PartidoContainer');
+	nuevoPartido(partido);
+}
 
-  var count = $(".PartidoContainer").length;
-  console.log(count)
-  count = count + 1;
-  //html = '<div class="PartidoContainer" id="Partido'+count+'">Partido'+count+'</div>';
+function nuevoPartido(partido) {
 
-  html = '<div class="PartidoContainer" id=Partido'+count+'>\
-  <h2 class="PartidoName editable">Partido'+count+'</h2>\
+  html = '<div id='+partido+'>\
+  <h2 class="PartidoName editable" data-name="'+partido+'">'+partido+'</h2>\
   <ul id="sortable1" class="sec">\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
@@ -119,8 +121,10 @@ function nuevoPartido() {
 </ul>\
 </div>';
 
+	
+nuevo = $(html);
 
- $(document.body)[0].insertAdjacentHTML('beforeend', html);
+ $('.PartidoContainer').append(nuevo);
   $( function() {
     $( ".sec" ).sortable();
     $( ".connectedSortable" ).sortable({
@@ -161,16 +165,15 @@ $(document).on("click", ".btnSave",
         $(this).parent()
                .html(newText);
         lel = "."+show;
-        console.log(lel);
-        console.log($('[data-name="'+show+'"]'))
-        $('[data-name="'+show+'"]').html(newText)
+
+        $('[data-name="'+show+'"]').html(newText);
+        $('[data-name="'+show+'"]').attr('data-name',newText); 
+        console.log($('[data-name="'+show+'"]'));
     }
 );
 
 function generate(partido){
 	lista = listaPartido(partido);
-
-	
 
 	listaSinRojos = lista.filter(function( index ) {
     			return $(this).css('color') === 'rgb(0, 0, 0)'
@@ -188,59 +191,20 @@ function generate(partido){
 
  	for (i = 1; i < listaArray.length+1; i++) {  
  		result.length = i; //n=2
-		combine(partido, listaArray, result.length, 0, result);
+		combine(listaArray, result.length, 0, result);
 	}
 	console.log(lorol);
-
+	return lorol;
 }
 
-
-function test(){
-	lista = listaPartido("Partido2");
-	console.log(lista);
-
-	listaSinRojos = lista.filter(function( index ) {
-    			return $(this).css('color') === 'rgb(0, 0, 0)'
-  			});
-
-	listaArray = [];
-	listaSinRojos.each(function( index ) {
-    	listaArray.push($(this).text());
-  	});
-/*
-  	console.log(listaArray);
-
-  	index = listaArray.indexOf("Elecciones");
-	console.log(index);
-
-	listanombresGob = listaArray.slice(0, index);
-	listaGob = listaSinRojos.slice(0, index);
-	console.log(listaGob);
-	console.log("************");
-	console.log(listanombresGob);
-
-*/
-	p = listaArray.splice(0, 1);
-	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
-	console.log(listaArray);
-	result = [];
-	lorol = [];
-
- 	for (i = 1; i < listaArray.length+1; i++) {  
- 		result.length = i; //n=2
-		combine( listaArray, result.length, 0, result);
-	}
-	console.log(lorol);
-}
-
-function combine(partido, input, len, start, result, p) {
+function combine(input, len, start, result, p) {
   if(len === 0) {
-    lorol.push(partido.concat(",").concat(result.join(",")));
+    lorol.push(result.join(","));
     return;
   }
   for (let i = start; i <= input.length - len; i++) {
     result[result.length - len] = input[i];
-    combine(partido, input, len-1, i+1, result);
+    combine(input, len-1, i+1, result);
   }
 }
 
