@@ -39,88 +39,82 @@ function generate(){
 
 $(document).ready(function(){
  	$(".editable").bind("dblclick", replaceHTML);
-  	console.log("hey");
 
-  	listaPartidos = $('#listas h2').map(function() {
+ 	 update();
+});
+
+
+function gob(partido, lista){
+	seccion = $('#'+partido+" .Gobierno");
+	lista.forEach(function( miembro ) {//estos li son a su vez una coleccion de elementos
+		item = $('<li class="ui-state-default contenedor"></li>');
+		main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
+		item.append(main);
+		miembro.forEach(function( partido ) {
+			p = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
+			item.append(p);
+  		});
+
+		seccion.append(item);
+  	});
+}
+
+function update(){
+	seccion = $('.PartidoContainer').children().remove();
+
+	listaPartidos = $('#listas h2').map(function() {
     return $(this).text();
 	}).get();
 
-  	listaPartidos.forEach(function( index ) {
-  		console.log("-----------------");
-    	rekt = generate(index);
-    	console.log(rekt);
-
-    	gob(index, rekt);
+  	listaPartidos.forEach(function( partido ) {
+    	rekt = generate(partido);
+    	nuevoPartido(partido);
+    	gob(partido, rekt);
   	});
-
-
-
-  //generate();
-});
-
-function gob(partido, lista){
-	elemt = $('.PartidoContainer');
-	nuevoPartido(partido);
 }
 
 function nuevoPartido(partido) {
 
-  html = '<div id='+partido+'>\
+  html = '<div id='+partido+' class="hey">\
   <h2 class="PartidoName editable" data-name="'+partido+'">'+partido+'</h2>\
   <ul id="sortable1" class="sec">\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion1</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+    <ul id="sortable3" class="connectedSortable Gobierno">\
+      <h2 class="ui-state-disabled">Gobierno</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion2</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Formar Coalicion</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion3</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Gobierno amigo</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion4</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Elecciones</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion5</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Gobierno Apoyado por enemigos</h2>\
+    </ul>\
+  </li>\
+    <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">Gobierno Coalicion enemiga</h2>\
+    </ul>\
+  </li>\
+    <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">Gobierno Enemigo</h2>\
     </ul>\
   </li>\
 </ul>\
 </div>';
-
 	
 nuevo = $(html);
 
@@ -189,12 +183,18 @@ function generate(partido){
 	result = [];
 	lorol = [];
 
+	hey = [];
+
  	for (i = 1; i < listaArray.length+1; i++) {  
  		result.length = i; //n=2
 		combine(listaArray, result.length, 0, result);
 	}
-	console.log(lorol);
-	return lorol;
+
+	lorol.forEach(function( string ) {
+		hey.push(string.split(","));
+  	});
+
+	return hey;
 }
 
 function combine(input, len, start, result, p) {
@@ -214,3 +214,64 @@ function listaPartido(partido){
 
     return lista;
 }
+
+/*
+
+html = '<div id='+partido+'>\
+  <h2 class="PartidoName editable" data-name="'+partido+'">'+partido+'</h2>\
+  <ul id="sortable1" class="sec">\
+  <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">seccion1</h2>\
+      <li class="ui-state-default">Item 1</li>\
+      <li class="ui-state-default">Item 2</li>\
+      <li class="ui-state-default">Item 3</li>\
+      <li class="ui-state-default">Item 4</li>\
+      <li class="ui-state-default">Item 5</li>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">seccion2</h2>\
+      <li class="ui-state-default">Item 1</li>\
+      <li class="ui-state-default">Item 2</li>\
+      <li class="ui-state-default">Item 3</li>\
+      <li class="ui-state-default">Item 4</li>\
+      <li class="ui-state-default">Item 5</li>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">seccion3</h2>\
+      <li class="ui-state-default">Item 1</li>\
+      <li class="ui-state-default">Item 2</li>\
+      <li class="ui-state-default">Item 3</li>\
+      <li class="ui-state-default">Item 4</li>\
+      <li class="ui-state-default">Item 5</li>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">seccion4</h2>\
+      <li class="ui-state-default">Item 1</li>\
+      <li class="ui-state-default">Item 2</li>\
+      <li class="ui-state-default">Item 3</li>\
+      <li class="ui-state-default">Item 4</li>\
+      <li class="ui-state-default">Item 5</li>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable">\
+      <h2 class="ui-state-disabled">seccion5</h2>\
+      <li class="ui-state-default">Item 1</li>\
+      <li class="ui-state-default">Item 2</li>\
+      <li class="ui-state-default">Item 3</li>\
+      <li class="ui-state-default">Item 4</li>\
+      <li class="ui-state-default">Item 5</li>\
+    </ul>\
+  </li>\
+</ul>\
+</div>';
+
+
+*/
