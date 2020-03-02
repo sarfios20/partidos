@@ -52,7 +52,7 @@ function formarCoalicion(partido, lista){//el orden no me mola
   seccion = $('#'+partido+" .Coalicion");
   console.log("----");
   lista.forEach(function( miembro ) {
-    item = $('<li class="ui-state-default contenedor"></li>');
+    item = $('<li class="ui-state-default contenedorElementos"></li>');
     miembro.forEach(function( p ) {
       e = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
       item.append(e);
@@ -66,7 +66,7 @@ function formarCoalicion(partido, lista){//el orden no me mola
 function Gobernar(partido, lista){
 	seccion = $('#'+partido+" .Gobierno");
 	lista.forEach(function( miembro ) {
-		item = $('<li class="ui-state-default contenedor"></li>');
+		item = $('<li class="ui-state-default contenedorElementos"></li>');
 		main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
 		item.append(main);
 		miembro.forEach(function( partido ) {
@@ -103,8 +103,8 @@ function nuevoPartido(partido) {
     </ul>\
   </li>\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled Coalicion">Formar Coalicion</h2>\
+    <ul id="sortable3" class="connectedSortable Coalicion">\
+      <h2 class="ui-state-disabled">Formar Coalicion</h2>\
     </ul>\
   </li>\
   <li>\
@@ -132,10 +132,10 @@ function nuevoPartido(partido) {
       <h2 class="ui-state-disabled">Gobierno Enemigo</h2>\
     </ul>\
   </li>\
-</ul>\
-</div>';
+  </ul>\
+  </div>';
 	
-nuevo = $(html);
+  nuevo = $(html);
 
  $('.PartidoContainer').append(nuevo);
   $( function() {

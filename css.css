@@ -19,7 +19,7 @@ body {
     font-size: 1.2em;
     width: 120px;
 }
-.contenedor{
+.contenedorElementos{
     display: flex;
     background-color: white;
 }
@@ -28,10 +28,14 @@ body {
     margin: 3px;
     display: flex;
 }
+
 .PartidoContainer{
     display: flex;
+    align-items: center;
 }
+
 .hey{
     display: flex;   
     flex-direction: column;
+    align-items: center;
 }
