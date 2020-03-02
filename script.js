@@ -43,20 +43,29 @@ $(document).ready(function(){
  	 update();
 });
 
-function Gobernar(partido){
-    rekt = generate(partido);
-    nuevoPartido(partido);
-    gob(partido, rekt);
-    formarCoalicion(partido, rekt);
+function formarCoalicion(partido, lista){//el orden no me mola
+
+  listaPartidos = $('#listas [data-name="'+partido+'"').map(function() {
+    return $(this).text();
+  }).get();
+
+  seccion = $('#'+partido+" .Coalicion");
+  console.log("----");
+  lista.forEach(function( miembro ) {
+    item = $('<li class="ui-state-default contenedor"></li>');
+    miembro.forEach(function( p ) {
+      e = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
+      item.append(e);
+    });
+    main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
+    item.append(main);
+    seccion.append(item);
+  });
 }
 
-function formarCoalicion(partido, lista){
-
-}
-
-function gob(partido, lista){
+function Gobernar(partido, lista){
 	seccion = $('#'+partido+" .Gobierno");
-	lista.forEach(function( miembro ) {//estos li son a su vez una coleccion de elementos
+	lista.forEach(function( miembro ) {
 		item = $('<li class="ui-state-default contenedor"></li>');
 		main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
 		item.append(main);
@@ -64,9 +73,8 @@ function gob(partido, lista){
 			p = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
 			item.append(p);
   		});
-
 		seccion.append(item);
-  	});
+  });
 }
 
 function update(){
@@ -77,8 +85,10 @@ function update(){
 	}).get();
 
   listaPartidos.forEach(function( partido ) {
-    Gobernar(partido);
-    formarCoalicion()
+    nuevoPartido(partido);
+    sinRojos = generate(partido);
+    Gobernar(partido, sinRojos);
+    formarCoalicion(partido, sinRojos);
   });
 }
 
@@ -94,7 +104,7 @@ function nuevoPartido(partido) {
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">Formar Coalicion</h2>\
+      <h2 class="ui-state-disabled Coalicion">Formar Coalicion</h2>\
     </ul>\
   </li>\
   <li>\
