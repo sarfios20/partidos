@@ -45,15 +45,13 @@ $(document).ready(function(){
 
 function Gobernar(partido){
     rekt = generate(partido);
-    console.log(rekt);
     nuevoPartido(partido);
     gob(partido, rekt);
     formarCoalicion(partido, rekt);
 }
 
 function formarCoalicion(partido, lista){
-  //console.log(partido);
-  //console.log(lista);
+
 }
 
 function gob(partido, lista){
@@ -80,7 +78,7 @@ function update(){
 
   listaPartidos.forEach(function( partido ) {
     Gobernar(partido);
-
+    formarCoalicion()
   });
 }
 
