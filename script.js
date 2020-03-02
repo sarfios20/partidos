@@ -43,6 +43,18 @@ $(document).ready(function(){
  	 update();
 });
 
+function Gobernar(partido){
+    rekt = generate(partido);
+    console.log(rekt);
+    nuevoPartido(partido);
+    gob(partido, rekt);
+    formarCoalicion(partido, rekt);
+}
+
+function formarCoalicion(partido, lista){
+  //console.log(partido);
+  //console.log(lista);
+}
 
 function gob(partido, lista){
 	seccion = $('#'+partido+" .Gobierno");
@@ -66,11 +78,10 @@ function update(){
     return $(this).text();
 	}).get();
 
-  	listaPartidos.forEach(function( partido ) {
-    	rekt = generate(partido);
-    	nuevoPartido(partido);
-    	gob(partido, rekt);
-  	});
+  listaPartidos.forEach(function( partido ) {
+    Gobernar(partido);
+
+  });
 }
 
 function nuevoPartido(partido) {
