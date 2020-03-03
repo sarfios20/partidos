@@ -43,24 +43,31 @@ $(document).ready(function(){
 });
 
 function GobiernoAmigo(partido, lista){
-  console.log("--"+partido);
+  console.log("---"+partido);
 
   amigos = lista.slice(0, lista.indexOf("Elecciones"));
-  listaSinR = sinRojos(partido);
-  listaSinR.splice(listaSinR.indexOf('Elecciones'), 1);
+  listaSinR = niRojosNiElecciones(partido);
   seccion = $('#'+partido+" .Amigo");
 
   amigos.forEach(function( a ) {
     l = listaSinR.slice();
     l.splice(partido, 1);
-    hay = niRojosNiElecciones(a, l);
+    hay = niRojosNiElecciones(partido, l);
+    //hay.splice(a, 1);
+    console.log("-"+a);
     console.log(hay);
+
+    console.log("++++++");
+    console.log(desarrollar(hay));
+
   });
 
 
 }
 
 function formarCoalicion(partido, lista){
+
+  lista = desarrollar(lista);
 
   listaPartidos = $('#listas [data-name="'+partido+'"').map(function() {
     return $(this).text();
@@ -81,6 +88,9 @@ function formarCoalicion(partido, lista){
 }
 
 function Gobernar(partido, lista){
+/*
+  lista = desarrollar(lista);
+
 	seccion = $('#'+partido+" .Gobierno");
 	e = $('<li class="ui-state-default contenedorElementos"></li>');
 	solo = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
@@ -95,6 +105,23 @@ function Gobernar(partido, lista){
 			item.append(p);
   		});
 		seccion.append(item);
+  });*/
+  appendParties(partido, "Gobierno", desarrollar(lista));
+
+
+
+}
+
+function appendParties(partido, clase, listas){
+  seccion = $('#'+partido+" ."+clase);
+  console.log(listas)
+  listas.forEach(function( lista ) {
+    item = $('<li class="ui-state-default contenedorElementos"></li>');
+    listas.forEach(function( p ) {
+      esto = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
+      item.append(esto);
+    });
+    seccion.append(esto);
   });
 }
 
@@ -181,6 +208,25 @@ function sinRojos(partido){
   return listaArray;
 }
 
+function desarrollar(listaArray){
+  result = [];
+  lorol = [];
+
+  hey = [];
+
+  for (i = 1; i < listaArray.length+1; i++) {  
+    result.length = i; //n=2
+    combine(listaArray, result.length, 0, result);
+  }
+
+  lorol.forEach(function( string ) {
+    hey.push(string.split(","));
+  });
+
+  return hey;
+
+}
+
 function niRojosNiElecciones(partido){
   listaSinRojos = aux(partido);
 
@@ -188,21 +234,8 @@ function niRojosNiElecciones(partido){
   listaArray.splice(partido, 1);
 
 	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
-	result = [];
-	lorol = [];
 
-	hey = [];
-
- 	for (i = 1; i < listaArray.length+1; i++) {  
- 		result.length = i; //n=2
-		combine(listaArray, result.length, 0, result);
-	}
-
-	lorol.forEach(function( string ) {
-		hey.push(string.split(","));
-  	});
-
-	return hey;
+	return listaArray;
 }
 
 function combine(input, len, start, result, p) {
