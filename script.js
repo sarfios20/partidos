@@ -53,6 +53,13 @@ function GobiernoAmigo(partido, lista){
   appendParties(partido, "Amigo", listas);
 }
 
+function Elecciones(partido){
+
+  listas = [["Elecciones"]];
+
+  appendParties(partido, "Elecciones", listas);
+}
+
 function update(){
   seccion = $('.PartidoContainer').children().remove();
 
@@ -68,6 +75,8 @@ function update(){
     Gobernar(partido, sinRojosE);
     formarCoalicion(partido, sinRojosE);
     GobiernoAmigo(partido, sinRojos);
+    Elecciones(partido);
+
   });
 }
 
@@ -159,7 +168,7 @@ function nuevoPartido(partido) {
     </ul>\
   </li>\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
+    <ul id="sortable3" class="connectedSortable Elecciones">\
       <h2 class="ui-state-disabled">Elecciones</h2>\
     </ul>\
   </li>\
@@ -194,3 +203,38 @@ function nuevoPartido(partido) {
     }).disableSelection();
   });
 }
+
+function replaceHTML(){
+    oldText = $(this).html().replace(/"/g, "");
+    $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
+}
+
+function change(elemt){
+    console.log(elemt);
+
+    if (elemt.style.color != "red"){
+      elemt.style.color = "red";
+    }else{
+      elemt.style.color = "black";
+    }
+}
+
+$(document).on("click", ".btnSave",
+    function()
+    {
+      var msglist = $(this).parent();
+
+    var show = msglist.data("name");
+
+        newText = $(this).siblings("form")
+                         .children(".editBox")
+                         .val().replace(/"/g, "");
+                          
+        $(this).parent()
+               .html(newText);
+        lel = "."+show;
+
+        $('[data-name="'+show+'"]').html(newText);
+        $('[data-name="'+show+'"]').attr('data-name',newText); 
+    }
+);
