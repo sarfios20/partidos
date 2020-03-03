@@ -54,10 +54,43 @@ function GobiernoAmigo(partido, lista){
 }
 
 function Elecciones(partido){
-
   listas = [["Elecciones"]];
-
   appendParties(partido, "Elecciones", listas);
+}
+
+function Enemigo(partido, lista){
+  listas = [[]];
+
+  lista.forEach(function( enemigo ) {
+    listas.push([enemigo]);
+  });
+  listas.shift();
+  appendParties(partido, "Enemigo", listas);
+}
+
+function CoalicionEnemiga(partido, listaSin, listaEnemigos){
+  /*
+  final = [[]];
+  
+  listaSin.forEach(function( p ) {
+    lista = listaEnemigos.slice()
+    lista.splice(p, 1);
+    listas = desarrollar(lista);
+    console.log(listas);
+    listas.forEach(function( l ) {
+      l.push(p);
+    });
+
+    final = final.concat(listas);
+
+  });
+
+*/
+  listaSin.forEach(function( p ) {
+    console.log(p);
+  });
+
+  //appendParties(partido, "CoalicionEnemiga", final);
 }
 
 function update(){
@@ -73,12 +106,15 @@ function update(){
     sinRojos = getSinRojos(partido);
 
     listarojos = rojos(partido);
-    console.log(listarojos);
+
 
     Gobernar(partido, sinRojosE);
     formarCoalicion(partido, sinRojosE);
     GobiernoAmigo(partido, sinRojos);
     Elecciones(partido);
+
+    CoalicionEnemiga(partido, sinRojosE, listarojos);
+    Enemigo(partido, listarojos);
 
   });
 }
@@ -148,22 +184,19 @@ function listaPartido(partido){
   return lista;
 }
 
-function rojos(partido){
-
-  console.log(partido);
+function rojos(partido){ 
   lista = listaPartido(partido);
 
-  listaSinRojos = lista.filter(function( index ) {
+  listaRojos = lista.filter(function( index ) {
     return $(this).css('color') === 'rgb(255, 0, 0)'
   });
 
   listaArray = [];
-  listaSinRojos.each(function( index ) {
+  listaRojos.each(function( index ) {
     listaArray.push($(this).text());
   });
-  listaArray.splice(partido, 1);
-  return listaArray;
 
+  return listaArray;
 }
 
 
