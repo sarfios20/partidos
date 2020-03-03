@@ -25,7 +25,6 @@ function appendParties(partido, clase, listas){
 }
 
 function Gobernar(partido, lista){
-
   listas = desarrollar(lista);
 
   listas.forEach(function( l ) {
@@ -33,6 +32,7 @@ function Gobernar(partido, lista){
   });
 
   listas.unshift([partido]);
+
   appendParties(partido, "Gobierno", listas);
 }
 
@@ -90,8 +90,6 @@ function combine(input, len, start, result, listaA) {
     combine(input, len-1, i+1, result, listaA);
   }
 }
-
-
 
 function niRojosNiElecciones(partido){
   listaSinRojos = getSinRojos(partido);
