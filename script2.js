@@ -12,23 +12,28 @@ $( function() {
 
 function appendParties(partido, clase, listas){
   seccion = $('#'+partido+" ."+clase);
-  main = $('<li class="ui-state-default contenedorElementos"></li>');
-  solo = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
-  main.append(solo);
-  seccion.append(main);
 
-  listas.forEach(function( miembro ) {
-    item = $('<li class="ui-state-default contenedorElementos"></li>');
-    miembro.forEach(function( p ) {
+  listas.forEach(function( lista ) {
+    contenedor = $('<li class="ui-state-default contenedorElementos"></li>');
+    lista.forEach(function( p ) {
       e = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
-      item.append(e);
+      contenedor.append(e);
     });
-    main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
-    item.append(main);
-    seccion.append(item);
+    //main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
+    seccion.append(contenedor);
+  });
+}
+
+function Gobernar(partido, lista){
+
+  listas = desarrollar(lista);
+
+  listas.forEach(function( l ) {
+      l.unshift(partido);
   });
 
-
+  listas.unshift([partido]);
+  appendParties(partido, "Gobierno", listas);
 }
 
 function update(){
@@ -42,7 +47,7 @@ function update(){
     nuevoPartido(partido);
     sinRojosE = niRojosNiElecciones(partido);
 
-    appendParties(partido, "Gobierno", desarrollar(sinRojosE));
+    Gobernar(partido, sinRojosE);
     /*
     sinRojo = sinRojos(partido);
     Gobernar(partido, sinRojosE);
