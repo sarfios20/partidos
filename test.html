@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="css.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script type="text/javascript" src="script.js"></script>
+  <script type="text/javascript" src="script2.js"></script>
 </head>
 <body>
 <div id=listas>
@@ -26,10 +26,29 @@
     <ul id="sortable3" class="sec">
       <li class="ui-state-default" data-name="Partido2" onclick="change(this)">Partido2</li>
       <li class="ui-state-default" data-name="Elecciones" onclick="change(this)">Elecciones</li>
+      <li class="ui-state-default" data-name="Partido1" onclick="change(this)">Partido1</li>
       <li class="ui-state-default" data-name="A" onclick="change(this)">A</li>
       <li class="ui-state-default" data-name="B" onclick="change(this)">B</li>
-      <li class="ui-state-default" data-name="C" onclick="change(this)">C</li>
-      <li class="ui-state-default" data-name="D" onclick="change(this)">D</li>
+    </ul>
+  </div>
+    <div>
+    <h2 class="editable" data-name="A">A</h2>
+    <ul id="sortable3" class="sec">
+      <li class="ui-state-default" data-name="A" onclick="change(this)">A</li>
+      <li class="ui-state-default" data-name="B" onclick="change(this)">B</li>
+      <li class="ui-state-default" data-name="Elecciones" onclick="change(this)">Elecciones</li>
+      <li class="ui-state-default" data-name="Partido2" onclick="change(this)">Partido2</li>
+      <li class="ui-state-default" data-name="Partido1" onclick="change(this)">Partido1</li>
+    </ul>
+  </div>
+    <div>
+    <h2 class="editable" data-name="B">B</h2>
+    <ul id="sortable3" class="sec">
+      <li class="ui-state-default" data-name="B" onclick="change(this)">B</li>
+      <li class="ui-state-default" data-name="A" onclick="change(this)">A</li>
+      <li class="ui-state-default" data-name="Partido2" onclick="change(this)">Partido2</li>
+      <li class="ui-state-default" data-name="Elecciones" onclick="change(this)">Elecciones</li>
+      <li class="ui-state-default" data-name="Partido1" onclick="change(this)">Partido1</li>
     </ul>
   </div>
 </div>
@@ -37,9 +56,8 @@
 <button onclick="python()">ajax</button>
 <button onclick="update()">update</button>
 
-
-
-<div class="PartidoContainer"></div>
+<div class="PartidoContainer">
+</div>
  
  
  
