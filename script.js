@@ -6,7 +6,7 @@ $( function() {
   $( ".connectedSortable" ).sortable({
     connectWith: ".connectedSortable"
   }).disableSelection();
-
+  $(".editable").bind("dblclick", replaceHTML);
   update();
 });
 
@@ -71,6 +71,9 @@ function update(){
     nuevoPartido(partido);
     sinRojosE = niRojosNiElecciones(partido);
     sinRojos = getSinRojos(partido);
+
+    listarojos = rojos(partido);
+    console.log(listarojos);
 
     Gobernar(partido, sinRojosE);
     formarCoalicion(partido, sinRojosE);
@@ -139,10 +142,28 @@ function getSinRojos(partido){
 }
 
 function listaPartido(partido){
-    div = $('#listas div > [data-name="'+partido+'"]').parent();
-    lista = div.children("ul").children("li");
+  div = $('#listas div > [data-name="'+partido+'"]').parent();
+  lista = div.children("ul").children("li");
 
-    return lista;
+  return lista;
+}
+
+function rojos(partido){
+
+  console.log(partido);
+  lista = listaPartido(partido);
+
+  listaSinRojos = lista.filter(function( index ) {
+    return $(this).css('color') === 'rgb(255, 0, 0)'
+  });
+
+  listaArray = [];
+  listaSinRojos.each(function( index ) {
+    listaArray.push($(this).text());
+  });
+  listaArray.splice(partido, 1);
+  return listaArray;
+
 }
 
 
@@ -173,17 +194,17 @@ function nuevoPartido(partido) {
     </ul>\
   </li>\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
+    <ul id="sortable3" class="connectedSortable ApoyoEnemigos">\
       <h2 class="ui-state-disabled">Gobierno Apoyado por enemigos</h2>\
     </ul>\
   </li>\
     <li>\
-    <ul id="sortable3" class="connectedSortable">\
+    <ul id="sortable3" class="connectedSortable CoalicionEnemiga">\
       <h2 class="ui-state-disabled">Gobierno Coalicion enemiga</h2>\
     </ul>\
   </li>\
     <li>\
-    <ul id="sortable3" class="connectedSortable">\
+    <ul id="sortable3" class="connectedSortable Enemigo">\
       <h2 class="ui-state-disabled">Gobierno Enemigo</h2>\
     </ul>\
   </li>\
@@ -201,6 +222,20 @@ function nuevoPartido(partido) {
     $( ".connectedSortable" ).sortable({
       connectWith: ".connectedSortable"
     }).disableSelection();
+  });
+}
+
+function python() {
+  $.ajax({
+    url: "partidos.php",
+    type: "post",
+//    data: {id: ID} ,
+        success: function (response) {
+      console.log(response)
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+           //console.log(textStatus, errorThrown);
+        }
   });
 }
 
