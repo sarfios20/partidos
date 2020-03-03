@@ -43,11 +43,24 @@ $(document).ready(function(){
 });
 
 
-function GobiernoAmigo(partido){
-    amigos = lista.slice(0, lista.indexOf("Elecciones"));
-    console.log(partido);
-    console.log(lista.indexOf("Elecciones"));
-    console.log(amigos);
+
+
+function GobiernoAmigo(partido, lista){
+  console.log("--"+partido);
+
+  amigos = lista.slice(0, lista.indexOf("Elecciones"));
+  listaSinR = sinRojos(partido);
+  listaSinR.splice(listaSinR.indexOf('Elecciones'), 1);
+  seccion = $('#'+partido+" .Amigo");
+
+  amigos.forEach(function( a ) {
+    l = listaSinR.slice();
+    l.splice(partido, 1);
+    hay = niRojosNiElecciones(a, l);
+    console.log(hay);
+  });
+
+
 }
 
 function formarCoalicion(partido, lista){
@@ -98,10 +111,10 @@ function update(){
   listaPartidos.forEach(function( partido ) {
     nuevoPartido(partido);
     sinRojosE = niRojosNiElecciones(partido);
-    sinRojos = niRojosNiElecciones(partido);
+    sinRojo = sinRojos(partido);
     Gobernar(partido, sinRojosE);
     formarCoalicion(partido, sinRojosE);
-    //GobiernoAmigo(partido);
+    GobiernoAmigo(partido, sinRojo);
   });
 }
 
@@ -121,7 +134,7 @@ function nuevoPartido(partido) {
     </ul>\
   </li>\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
+    <ul id="sortable3" class="connectedSortable Amigo">\
       <h2 class="ui-state-disabled">Gobierno amigo</h2>\
     </ul>\
   </li>\
@@ -221,23 +234,12 @@ function sinRojos(partido){
   listaSinRojos = aux(partido);
 
   listaArray = aux2(listaSinRojos);
+
+
+
   listaArray.splice(partido, 1);
 
-  result = [];
-  lorol = [];
-
-  hey = [];
-
-  for (i = 1; i < listaArray.length+1; i++) {  
-    result.length = i; //n=2
-    combine(listaArray, result.length, 0, result);
-  }
-
-  lorol.forEach(function( string ) {
-    hey.push(string.split(","));
-    });
-
-  return hey;
+  return listaArray;
 }
 
 
