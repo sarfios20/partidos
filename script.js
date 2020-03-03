@@ -32,7 +32,6 @@ function generate(){
       	<li class="ui-state-default">'+ $(this).attr('id')+'</li>\
     	</ul>\
   		</li>';
-  		console.log(g);
   		$(document.body)[0].insertAdjacentHTML('beforeend', html);
   });
 }
@@ -50,7 +49,7 @@ function formarCoalicion(partido, lista){//el orden no me mola
   }).get();
 
   seccion = $('#'+partido+" .Coalicion");
-  console.log("----");
+
   lista.forEach(function( miembro ) {
     item = $('<li class="ui-state-default contenedorElementos"></li>');
     miembro.forEach(function( p ) {
@@ -65,6 +64,10 @@ function formarCoalicion(partido, lista){//el orden no me mola
 
 function Gobernar(partido, lista){
 	seccion = $('#'+partido+" .Gobierno");
+	e = $('<li class="ui-state-default contenedorElementos"></li>');
+	solo = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
+	e.append(solo);
+	seccion.append(e);
 	lista.forEach(function( miembro ) {
 		item = $('<li class="ui-state-default contenedorElementos"></li>');
 		main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
