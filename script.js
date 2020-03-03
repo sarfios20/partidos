@@ -42,7 +42,15 @@ $(document).ready(function(){
  	 update();
 });
 
-function formarCoalicion(partido, lista){//el orden no me mola
+
+function GobiernoAmigo(partido){
+    amigos = lista.slice(0, lista.indexOf("Elecciones"));
+    console.log(partido);
+    console.log(lista.indexOf("Elecciones"));
+    console.log(amigos);
+}
+
+function formarCoalicion(partido, lista){
 
   listaPartidos = $('#listas [data-name="'+partido+'"').map(function() {
     return $(this).text();
@@ -89,9 +97,11 @@ function update(){
 
   listaPartidos.forEach(function( partido ) {
     nuevoPartido(partido);
-    sinRojos = generate(partido);
-    Gobernar(partido, sinRojos);
-    formarCoalicion(partido, sinRojos);
+    sinRojosE = niRojosNiElecciones(partido);
+    sinRojos = niRojosNiElecciones(partido);
+    Gobernar(partido, sinRojosE);
+    formarCoalicion(partido, sinRojosE);
+    //GobiernoAmigo(partido);
   });
 }
 
@@ -188,19 +198,56 @@ $(document).on("click", ".btnSave",
     }
 );
 
-function generate(partido){
-	lista = listaPartido(partido);
+function aux(partido){
+  lista = listaPartido(partido);
 
-	listaSinRojos = lista.filter(function( index ) {
-    			return $(this).css('color') === 'rgb(0, 0, 0)'
-  			});
+  listaSinRojos = lista.filter(function( index ) {
+    return $(this).css('color') === 'rgb(0, 0, 0)'
+  });
+  return listaSinRojos;
+}
 
-	listaArray = [];
-	listaSinRojos.each(function( index ) {
-    	listaArray.push($(this).text());
-  	});
+function aux2(lista){
+  listaArray = [];
+  lista.each(function( index ) {
+    listaArray.push($(this).text());
+  });
+  return listaArray;
+}
 
-  	listaArray.splice(partido, 1);
+
+function sinRojos(partido){
+
+  listaSinRojos = aux(partido);
+
+  listaArray = aux2(listaSinRojos);
+  listaArray.splice(partido, 1);
+
+  result = [];
+  lorol = [];
+
+  hey = [];
+
+  for (i = 1; i < listaArray.length+1; i++) {  
+    result.length = i; //n=2
+    combine(listaArray, result.length, 0, result);
+  }
+
+  lorol.forEach(function( string ) {
+    hey.push(string.split(","));
+    });
+
+  return hey;
+}
+
+
+
+function niRojosNiElecciones(partido){
+  listaSinRojos = aux(partido);
+
+  listaArray = aux2(listaSinRojos);
+  listaArray.splice(partido, 1);
+
 	listaArray.splice(listaArray.indexOf('Elecciones'), 1);
 	result = [];
 	lorol = [];
