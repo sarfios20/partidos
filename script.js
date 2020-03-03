@@ -1,12 +1,12 @@
 $( function() {
-    $( ".sec" ).sortable();
-    $( ".connectedSortable" ).sortable({
-       items: "li:not(.ui-state-disabled)"
-    });
-    $( ".connectedSortable" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-  } );
+  $( ".sec" ).sortable();
+  $( ".connectedSortable" ).sortable({
+    items: "li:not(.ui-state-disabled)"
+  });
+  $( ".connectedSortable" ).sortable({
+    connectWith: ".connectedSortable"
+  }).disableSelection();
+});
 
 function python() {
 	$.ajax({
@@ -41,9 +41,6 @@ $(document).ready(function(){
 
  	 update();
 });
-
-
-
 
 function GobiernoAmigo(partido, lista){
   console.log("--"+partido);
@@ -118,63 +115,6 @@ function update(){
   });
 }
 
-function nuevoPartido(partido) {
-
-  html = '<div id='+partido+' class="hey">\
-  <h2 class="PartidoName editable" data-name="'+partido+'">'+partido+'</h2>\
-  <ul id="sortable1" class="sec">\
-  <li>\
-    <ul id="sortable3" class="connectedSortable Gobierno">\
-      <h2 class="ui-state-disabled">Gobierno</h2>\
-    </ul>\
-  </li>\
-  <li>\
-    <ul id="sortable3" class="connectedSortable Coalicion">\
-      <h2 class="ui-state-disabled">Formar Coalicion</h2>\
-    </ul>\
-  </li>\
-  <li>\
-    <ul id="sortable3" class="connectedSortable Amigo">\
-      <h2 class="ui-state-disabled">Gobierno amigo</h2>\
-    </ul>\
-  </li>\
-  <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">Elecciones</h2>\
-    </ul>\
-  </li>\
-  <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">Gobierno Apoyado por enemigos</h2>\
-    </ul>\
-  </li>\
-    <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">Gobierno Coalicion enemiga</h2>\
-    </ul>\
-  </li>\
-    <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">Gobierno Enemigo</h2>\
-    </ul>\
-  </li>\
-  </ul>\
-  </div>';
-	
-  nuevo = $(html);
-
- $('.PartidoContainer').append(nuevo);
-  $( function() {
-    $( ".sec" ).sortable();
-    $( ".connectedSortable" ).sortable({
-       items: "li:not(.ui-state-disabled)"
-    });
-    $( ".connectedSortable" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
-  } );
-}
-
 function replaceHTML(){
     oldText = $(this).html().replace(/"/g, "");
     $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
@@ -228,7 +168,6 @@ function aux2(lista){
   return listaArray;
 }
 
-
 function sinRojos(partido){
 
   listaSinRojos = aux(partido);
@@ -241,8 +180,6 @@ function sinRojos(partido){
 
   return listaArray;
 }
-
-
 
 function niRojosNiElecciones(partido){
   listaSinRojos = aux(partido);
@@ -286,63 +223,59 @@ function listaPartido(partido){
     return lista;
 }
 
-/*
+function nuevoPartido(partido) {
 
-html = '<div id='+partido+'>\
+  html = '<div id='+partido+' class="hey">\
   <h2 class="PartidoName editable" data-name="'+partido+'">'+partido+'</h2>\
   <ul id="sortable1" class="sec">\
   <li>\
-    <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion1</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+    <ul id="sortable3" class="connectedSortable Gobierno">\
+      <h2 class="ui-state-disabled">Gobierno</h2>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable Coalicion">\
+      <h2 class="ui-state-disabled">Formar Coalicion</h2>\
+    </ul>\
+  </li>\
+  <li>\
+    <ul id="sortable3" class="connectedSortable Amigo">\
+      <h2 class="ui-state-disabled">Gobierno amigo</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion2</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Elecciones</h2>\
     </ul>\
   </li>\
   <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion3</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Gobierno Apoyado por enemigos</h2>\
     </ul>\
   </li>\
-  <li>\
+    <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion4</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Gobierno Coalicion enemiga</h2>\
     </ul>\
   </li>\
-  <li>\
+    <li>\
     <ul id="sortable3" class="connectedSortable">\
-      <h2 class="ui-state-disabled">seccion5</h2>\
-      <li class="ui-state-default">Item 1</li>\
-      <li class="ui-state-default">Item 2</li>\
-      <li class="ui-state-default">Item 3</li>\
-      <li class="ui-state-default">Item 4</li>\
-      <li class="ui-state-default">Item 5</li>\
+      <h2 class="ui-state-disabled">Gobierno Enemigo</h2>\
     </ul>\
   </li>\
-</ul>\
-</div>';
+  </ul>\
+  </div>';
+  
+  nuevo = $(html);
 
-
-*/
+ $('.PartidoContainer').append(nuevo);
+  $( function() {
+    $( ".sec" ).sortable();
+    $( ".connectedSortable" ).sortable({
+       items: "li:not(.ui-state-disabled)"
+    });
+    $( ".connectedSortable" ).sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  } );
+}
