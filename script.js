@@ -69,6 +69,7 @@ function Enemigo(partido, lista){
 }
 
 function ApoyoEnemigos(partido, sinRojosE, listaEnemigos){
+
   if(listaEnemigos.length > 0){
 
     final = [[]];
@@ -88,15 +89,36 @@ function ApoyoEnemigos(partido, sinRojosE, listaEnemigos){
           }
         });
       });
-
     });
 
     let uniqueArray = new Set(final);
     final2= Array.from(uniqueArray);
     final2.shift();
-    console.log(final2);
     appendParties(partido, "ApoyoEnemigos", final2);
   }
+}
+
+function CoalicionEnemiga(partido, listaEnemigos, listaTodos){
+
+  final = [[]];
+
+  copy = listaTodos.slice();
+  copy.splice(copy.indexOf(partido), 1);
+
+  listaEnemigos.forEach(function( enemigo ) {
+
+    what = copy.slice();
+    what.splice(what.indexOf(enemigo), 1);
+    final = desarrollar(what);
+
+    final.forEach(function( l ) {
+      l.unshift(enemigo);
+    });
+  });
+
+  final.shift();
+
+  appendParties(partido, "CoalicionEnemiga", final);
 }
 
 function update(){
@@ -113,6 +135,7 @@ function update(){
 
     listarojos = rojos(partido);
 
+    completa = todos(partido);
 
     Gobernar(partido, sinRojosE);
     formarCoalicion(partido, sinRojosE);
@@ -120,7 +143,7 @@ function update(){
     Elecciones(partido);
 
     ApoyoEnemigos(partido, sinRojosE, listarojos);
-    //CoalicionEnemiga(partido, listarojos);
+    CoalicionEnemiga(partido, listarojos, completa);
     Enemigo(partido, listarojos);
 
   });
@@ -159,6 +182,20 @@ function combine(input, len, start, result, listaA) {
     result[result.length - len] = input[i];
     combine(input, len-1, i+1, result, listaA);
   }
+}
+
+function todos(partido){
+  lista = listaPartido(partido);
+
+  listaArray = [];
+
+  lista.each(function( index ) {
+    listaArray.push($(this).text());
+  });
+
+  listaArray.splice(listaArray.indexOf("Elecciones"), 1);
+
+  return listaArray;
 }
 
 function niRojosNiElecciones(partido){
