@@ -109,12 +109,17 @@ function CoalicionEnemiga(partido, listaEnemigos, listaTodos){
 
     what = copy.slice();
     what.splice(what.indexOf(enemigo), 1);
+    what.unshift(enemigo);
+    console.log(what);
     final = desarrollar(what);
-
+    console.log(final);
+/*
     final.forEach(function( l ) {
       l.unshift(enemigo);
-    });
+    });*/
   });
+
+  
 
   final.shift();
 
