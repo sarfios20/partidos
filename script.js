@@ -68,7 +68,7 @@ function Enemigo(partido, lista){
   appendParties(partido, "Enemigo", listas);
 }
 
-function CoalicionEnemiga(partido, listaSin, listaEnemigos){
+function CoalicionEnemiga(partido, listaPartidos, listaEnemigos){
   /*
   final = [[]];
   
@@ -86,9 +86,25 @@ function CoalicionEnemiga(partido, listaSin, listaEnemigos){
   });
 
 */
-  listaSin.forEach(function( p ) {
-    console.log(p);
+  hey = listaPartidos.slice();
+  hey.splice(partido, 1);
+  nueva = desarrollar(hey);
+
+  final = [[]];
+
+  nueva.forEach(function( lista ) {
+    listaEnemigos.some(function( enemigo ) {
+      if(lista.indexOf(enemigo) > -1){
+        console.log(enemigo)
+        console.log(lista)
+        final.push(lista);
+        return true;
+      }
+    });
   });
+
+  console.log(final);
+
 
   //appendParties(partido, "CoalicionEnemiga", final);
 }
@@ -113,7 +129,7 @@ function update(){
     GobiernoAmigo(partido, sinRojos);
     Elecciones(partido);
 
-    CoalicionEnemiga(partido, sinRojosE, listarojos);
+    CoalicionEnemiga(partido, listaPartidos, listarojos);
     Enemigo(partido, listarojos);
 
   });
