@@ -68,45 +68,66 @@ function Enemigo(partido, lista){
   appendParties(partido, "Enemigo", listas);
 }
 
-function CoalicionEnemiga(partido, listaPartidos, listaEnemigos){
-  /*
-  final = [[]];
-  
-  listaSin.forEach(function( p ) {
-    lista = listaEnemigos.slice()
-    lista.splice(p, 1);
-    listas = desarrollar(lista);
-    console.log(listas);
-    listas.forEach(function( l ) {
-      l.push(p);
+function CoalicionEnemiga(partido, sinRojosE, listaEnemigos){
+
+  if(listaEnemigos.length > 0){
+
+    final = [[]];
+
+    listap = sinRojosE.concat(listaEnemigos);
+    console.log("---"+partido);
+
+
+    sinRojosE.forEach(function( p ) {
+      console.log("-"+p)
+      otra = listap.slice();
+      otra.splice(otra.indexOf(p), 1);
+      omg = desarrollar(otra);
+      omg.forEach(function( l ) {
+        listaEnemigos.some(function( enemigo ) {
+          if(l.includes(enemigo)){
+            if(l.indexOf(p) < 0){
+              l.unshift(p);
+            }
+            final.push(l);
+          }
+        });
+      });
+
     });
+    let uniqueArray = new Set(final);
+    final2= Array.from(uniqueArray);
+    final2.shift();
+    console.log(final2);
+  }
 
-    final = final.concat(listas);
-
-  });
-
-*/
+/*l.unshift(p);
   hey = listaPartidos.slice();
-  hey.splice(partido, 1);
+  hey.splice(hey.indexOf(partido), 1);
   nueva = desarrollar(hey);
+
+
+//console.log("--")
+ console.log(nueva)
 
   final = [[]];
 
   nueva.forEach(function( lista ) {
     listaEnemigos.some(function( enemigo ) {
-      if(lista.indexOf(enemigo) > -1){
-        console.log(enemigo)
-        console.log(lista)
+      if(lista.indexOf(enemigo) > -1 && lista.length > 1){
+        if(lista[0] === enemigo){
+          lista.swapItems(0, 1);//REWORK
+        }
         final.push(lista);
         return true;
       }
     });
   });
 
-  console.log(final);
+  //console.log(final);
 
 
-  //appendParties(partido, "CoalicionEnemiga", final);
+  //appendParties(partido, "CoalicionEnemiga", final);*/
 }
 
 function update(){
@@ -129,7 +150,7 @@ function update(){
     GobiernoAmigo(partido, sinRojos);
     Elecciones(partido);
 
-    CoalicionEnemiga(partido, listaPartidos, listarojos);
+    CoalicionEnemiga(partido, sinRojosE, listarojos);
     Enemigo(partido, listarojos);
 
   });
@@ -322,3 +343,8 @@ $(document).on("click", ".btnSave",
         $('[data-name="'+show+'"]').attr('data-name',newText); 
     }
 );
+
+Array.prototype.swapItems = function(a, b){
+    this[a] = this.splice(b, 1, this[a])[0];
+    return this;
+}
