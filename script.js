@@ -103,23 +103,20 @@ function CoalicionEnemiga(partido, listaEnemigos, listaTodos){
   final = [[]];
 
   copy = listaTodos.slice();
-  copy.splice(copy.indexOf(partido), 1);
-
+  
   listaEnemigos.forEach(function( enemigo ) {
 
+    console.log(enemigo);
     what = copy.slice();
     what.splice(what.indexOf(enemigo), 1);
-    what.unshift(enemigo);
-    console.log(what);
-    final = desarrollar(what);
-    console.log(final);
-/*
-    final.forEach(function( l ) {
-      l.unshift(enemigo);
-    });*/
-  });
+    aux = desarrollar(what);
 
-  
+    aux.forEach(function( l ){
+      l.unshift(enemigo);
+    });
+
+    final = final.concat(aux);
+  });
 
   final.shift();
 
@@ -313,7 +310,7 @@ function python() {
     type: "post",
 //    data: {id: ID} ,
         success: function (response) {
-      console.log(response)
+          console.log(response)
         },
         error: function(jqXHR, textStatus, errorThrown) {
            //console.log(textStatus, errorThrown);
