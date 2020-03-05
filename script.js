@@ -105,8 +105,6 @@ function CoalicionEnemiga(partido, listaEnemigos, listaTodos){
   copy = listaTodos.slice();
   
   listaEnemigos.forEach(function( enemigo ) {
-
-    console.log(enemigo);
     what = copy.slice();
     what.splice(what.indexOf(enemigo), 1);
     aux = desarrollar(what);
@@ -304,7 +302,53 @@ function nuevoPartido(partido) {
   });
 }
 
+function preferencias(partido) {
+  contenedor = $('#'+partido+' .contenedorElementos');
+
+
+  
+  listaL = [[]];
+
+  contenedor.each(function( index ) {
+    listaArray = [];
+    coalicion = $(contenedor[index]).children();
+    //console.log(coalicion);
+
+    coalicion.each(function( i ) {
+      listaArray.push($(this).text());
+    });
+    listaL.push(listaArray);
+    //partidos = coalicion.children();
+
+    //console.log(partidos);
+  });
+
+  listaL.shift();
+
+  return listaL;
+  //console.log("------");
+  //console.log(listaL);
+
+}
+
 function python() {
+
+  listaPartidos = $('#listas h2').map(function() {
+    return $(this).text();
+  }).get();
+
+  final =[[[]]];
+
+  //console.log(listaPartidos);
+
+  listaPartidos.forEach(function( partido ) {
+    final.push(preferencias(partido));
+  });
+
+  final.shift();
+  console.log(final);
+
+
   $.ajax({
     url: "partidos.php",
     type: "post",
