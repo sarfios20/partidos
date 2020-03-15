@@ -2,6 +2,7 @@ from itertools import combinations
 from operator import itemgetter
 from math import factorial
 import collections
+import sys
 from collections import Counter
 
 class Nodo:
@@ -305,7 +306,11 @@ def is_critical(player, players, coalition, quota):
     return False
 
 
+if __name__== "__main__":
+    arguments = sys.argv[1]
+    print(arguments)
 
+"""
 a = Partido("a", 170)
 b = Partido("b", 6)
 c = Partido("c", 1)
@@ -352,3 +357,4 @@ if (Counter([a, b, c]) == Counter([a, c, b])):
     print("guay")
 print(Counter([a, b, c]))
 print(Counter([a, c, b]))
+"""

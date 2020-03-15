@@ -351,12 +351,9 @@ function jsonaitor(lista) {
   });
   json = json.slice(0, -1); 
   json += ']'
-  json += '}'
+  json += '},'
 
-  console.log(partido);
-  console.log(json);
-
-
+  return json;
 }
 
 
@@ -377,18 +374,23 @@ function python() {
 
   final.shift();
   
+  json = '{"Partidos" : ['
 
   final.forEach(function( lista ) {
-    jsonaitor(lista);
+    json += jsonaitor(lista);
   });
+  json = json.slice(0, -1); 
+  json += ']}'
 
+  obj = JSON.parse(json);
 
   $.ajax({
     url: "partidos.php",
     type: "post",
-//    data: {id: ID} ,
+    data: obj ,
         success: function (response) {
-          console.log(response)
+          r = JSON.parse(response);
+          console.log(r);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            //console.log(textStatus, errorThrown);
