@@ -324,12 +324,42 @@ function preferencias(partido) {
   });
 
   listaL.shift();
+  listaL.unshift(partido);
 
   return listaL;
   //console.log("------");
   //console.log(listaL);
 
 }
+
+function jsonaitor(lista) {
+
+  partido = lista[0];
+  lista.shift();
+
+  json = '{"PartidoName":"'+partido+'",'
+  json += ' "seats": "150",'
+  json += ' "preferencias": ['
+
+  lista.forEach(function( l ) {
+    json += '['
+    l.forEach(function( p ) {
+      json += '"'+p+'",'
+    });
+    json = json.slice(0, -1); 
+    json += '],'
+  });
+  json = json.slice(0, -1); 
+  json += ']'
+  json += '}'
+
+  console.log(partido);
+  console.log(json);
+
+
+}
+
+
 
 function python() {
 
@@ -346,7 +376,11 @@ function python() {
   });
 
   final.shift();
-  console.log(final);
+  
+
+  final.forEach(function( lista ) {
+    jsonaitor(lista);
+  });
 
 
   $.ajax({
