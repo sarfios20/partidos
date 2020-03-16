@@ -306,7 +306,7 @@ def is_critical(player, players, coalition, quota):
         return True
     return False
 
-"""
+
 if __name__== "__main__":
     arguments = sys.argv[1]
     entrada = json.loads(arguments)
@@ -323,8 +323,17 @@ if __name__== "__main__":
             listaG.append(list(l))
         partido.P = listaG
 
+    l = Nodo(ole[0])
+
+    lista = l.Arbol(list(ole), [])
+    for p in lista:
+        print(p.name, end="")
+
+    print("--------")
+
 
 """
+
 a = Partido("a", 170)
 b = Partido("b", 6)
 c = Partido("c", 1)
@@ -352,7 +361,8 @@ for p in lista:
 
 
 print("--------")
-"""
+
+
 listageneral = []
 nodo = Nodo(a)
 
