@@ -34,7 +34,6 @@ class Nodo:
 
 
     def Arbol(self, listaBajada, listaSubida):
-        print(listaBajada)
         listaBajada.remove(self.partido)
         listaSubida.append(self.partido)
         listaOpciones = []
@@ -76,7 +75,7 @@ class Partido:
         for l in self.P:
             for lista in listaOpciones:
                 if self.check(lista):
-                    print(l)
+                    #print(l)
                     if len(l) == 0 or len(lista) == 0:
                         if l == lista:
                             return l
@@ -329,16 +328,19 @@ if __name__== "__main__":
 
     #partido = Partido()
 
-    print(type(listaPartidos[0]))
 
     l = Nodo(listaPartidos[0])
 
+
     lista = l.Arbol(listaPartidos, [])
-    for p in lista:
-        print(p.name, end="")
 
-    print("--------")
+    print(lista)
 
+    #for p in lista:
+        #print(p.name, end="")
+
+
+    #print()
 
 """
 
