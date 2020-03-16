@@ -34,6 +34,7 @@ class Nodo:
 
 
     def Arbol(self, listaBajada, listaSubida):
+        print(listaBajada)
         listaBajada.remove(self.partido)
         listaSubida.append(self.partido)
         listaOpciones = []
@@ -306,6 +307,8 @@ def is_critical(player, players, coalition, quota):
         return True
     return False
 
+#MAYORIA DINAMICAMENTE
+mayoria = 5
 
 if __name__== "__main__":
     arguments = sys.argv[1]
@@ -316,16 +319,21 @@ if __name__== "__main__":
     listaPartidos = []
 
     for p in ole:
-        partido = Partido(p["PartidoName"], p["seats"])
+        partido = Partido(p["PartidoName"], int(p["seats"]))
         preferencias = p["preferencias"]
         listaG = []
         for l in preferencias:
             listaG.append(list(l))
         partido.P = listaG
+        listaPartidos.append(partido)
 
-    l = Nodo(ole[0])
+    #partido = Partido()
 
-    lista = l.Arbol(list(ole), [])
+    print(type(listaPartidos[0]))
+
+    l = Nodo(listaPartidos[0])
+
+    lista = l.Arbol(listaPartidos, [])
     for p in lista:
         print(p.name, end="")
 
