@@ -390,8 +390,8 @@ function python() {
     type: "post",
     data: obj ,
         success: function (response) {
-          //r = JSON.parse(response);
-          console.log(response);
+          r = JSON.parse(response);
+          console.log(r);
         },
         error: function(jqXHR, textStatus, errorThrown) {
            //console.log(textStatus, errorThrown);
