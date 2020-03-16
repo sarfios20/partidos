@@ -306,12 +306,22 @@ def is_critical(player, players, coalition, quota):
         return True
     return False
 
-
+"""
 if __name__== "__main__":
     arguments = sys.argv[1]
-    print(arguments)
     entrada = json.loads(arguments)
-    print(entrada)
+
+    ole = (entrada["Partidos"])
+
+    listaPartidos = []
+
+    for p in ole:
+        partido = Partido(p["PartidoName"], p["seats"])
+        preferencias = p["preferencias"]
+        listaG = []
+        for l in preferencias:
+            listaG.append(list(l))
+        partido.P = listaG
 
 
 """
@@ -342,7 +352,7 @@ for p in lista:
 
 
 print("--------")
-
+"""
 listageneral = []
 nodo = Nodo(a)
 
