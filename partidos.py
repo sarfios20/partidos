@@ -3,6 +3,7 @@ from operator import itemgetter
 from math import factorial
 import collections
 import sys
+import json
 from collections import Counter
 
 class Nodo:
@@ -308,8 +309,10 @@ def is_critical(player, players, coalition, quota):
 
 if __name__== "__main__":
     arguments = sys.argv[1]
-    print("--------------")
     print(arguments)
+    entrada = json.loads(arguments)
+    print(entrada)
+
 
 """
 a = Partido("a", 170)
