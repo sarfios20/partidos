@@ -81,8 +81,6 @@ class Partido:
                             return l
                     else:
                         if l[0] != lista[0]:
-                            print(l)
-                            print(lista)
                             if Counter(l) == Counter(lista):
                                 return l
         return listaOpciones[0]
@@ -311,6 +309,12 @@ def is_critical(player, players, coalition, quota):
 #MAYORIA DINAMICAMENTE
 mayoria = 5
 
+def buscar(name, listaPartidos):
+    for p in listaPartidos:
+        if p.name == name:
+            return p
+
+
 if __name__== "__main__":
     arguments = sys.argv[1]
     entrada = json.loads(arguments)
@@ -328,6 +332,23 @@ if __name__== "__main__":
         partido.P = listaG
         listaPartidos.append(partido)
 
+    listaM =[]
+
+    for partido in listaPartidos:
+        lista = []
+        for g in partido.P:
+            sublista = []
+            for c in g:
+                p = buscar(c, listaPartidos)
+                if p != None:
+                    sublista.append(p)
+            lista.append(sublista)
+        listaM.append(lista)
+
+    for index in range(len(listaPartidos)):
+        listaPartidos[index].P = listaM[index]
+
+
     #partido = Partido()
 
 
@@ -336,7 +357,15 @@ if __name__== "__main__":
 
     lista = l.Arbol(listaPartidos, [])
 
-    print(lista)
+    json = '{'
+
+    for p in lista:
+        json = json + '"partido":'
+        json = json + '"' + p.name + '",'
+    json = json[:-1]
+    json = json + '}'
+
+    print(json)
 
     #for p in lista:
         #print(p.name, end="")
