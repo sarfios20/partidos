@@ -384,12 +384,12 @@ function python() {
 
   obj = JSON.parse(json);
 
-
   $.ajax({
     url: "partidos.php",
     type: "post",
     data: obj ,
         success: function (response) {
+          console.log(response);
           r = JSON.parse(response);
           console.log(r);
         },

@@ -81,6 +81,8 @@ class Partido:
                             return l
                     else:
                         if l[0] != lista[0]:
+                            print(l)
+                            print(lista)
                             if Counter(l) == Counter(lista):
                                 return l
         return listaOpciones[0]
