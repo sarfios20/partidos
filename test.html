@@ -6,26 +6,48 @@
   <title>jQuery UI Sortable - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <style>
-  .principal { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  .partidoPrincipal { list-style-type: none; margin: 0; padding: 0; width: 60%; }
   .seccionContainer { min-height: 80px;}
   .conjuntoContainer { min-height: 40px; padding: 10px;}
   .OwO { min-height: 40px;}
+  .sub { background-color: coral; margin: 10px;}
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( ".principal" ).sortable();
-    $( ".principal" ).disableSelection();
-    $( ".subContainer .conjuntoContainer" ).sortable({
-      connectWith: ".subContainer .conjuntoContainer"
+    $( ".partidoPrincipal" ).sortable();
+    $( ".partidoPrincipal" ).disableSelection();
+    $( ".conjuntoContainer" ).sortable({
+      connectWith: ".conjuntoContainer"
+    }).disableSelection();
+    $( ".subContainer" ).sortable({
+      connectWith: ".subContainer"
     }).disableSelection();
   } );
   </script>
 </head>
 <body>
  
-<ul class="principal">Principal
+<div>
+<ul class="partidoPrincipal">Principal
+  <li class="ui-state-default seccionContainer">
+    <ul class="subContainer seccion">seccion
+        <ul class="conjuntoContainer sub">sub
+          <br>
+          <br>
+          <br>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul>   
+        <ul class="conjuntoContainer sub">sub
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul> 
+    </ul>       
+  </li>
   <li class="ui-state-default seccionContainer">
     <ul class="subContainer seccion">seccion
         <ul class="conjuntoContainer sub">sub
@@ -42,13 +64,25 @@
     </ul>       
   </li>
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">
-
-    </ul>      
+    <ul class="subContainer seccion">seccion
+        <ul class="conjuntoContainer sub">sub
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul>   
+        <ul class="conjuntoContainer sub">sub
+          <br>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul> 
+    </ul>       
   </li>
 
+
+
 </ul>
- 
+ </div>
  
 </body>
 </html>
