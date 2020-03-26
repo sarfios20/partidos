@@ -129,6 +129,7 @@ function update(){
   }).get();
 
   listaPartidos.forEach(function( partido ) {
+
     nuevoPartido(partido);
     sinRojosE = niRojosNiElecciones(partido);
     sinRojos = getSinRojos(partido);
@@ -200,7 +201,6 @@ function todos(partido){
 
 function niRojosNiElecciones(partido){
   listaSinRojos = getSinRojos(partido);
-
   listaSinRojos.splice(listaSinRojos.indexOf('Elecciones'), 1);
 
   return listaSinRojos;
@@ -208,7 +208,6 @@ function niRojosNiElecciones(partido){
 
 function getSinRojos(partido){
   lista = listaPartido(partido);
-
   listaSinRojos = lista.filter(function( index ) {
     return $(this).css('color') === 'rgb(0, 0, 0)'
   });
@@ -217,7 +216,9 @@ function getSinRojos(partido){
   listaSinRojos.each(function( index ) {
     listaArray.push($(this).text());
   });
-  listaArray.splice(partido, 1);
+
+  listaArray.splice(listaArray.indexOf(partido), 1);
+
   return listaArray;
 }
 
