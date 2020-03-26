@@ -122,6 +122,10 @@ function CoalicionEnemiga(partido, listaEnemigos, listaTodos){
 }
 
 function update(){
+
+  //FALTA UNA SECCION PARA NEUTRALES
+  console.log("NEUTRALES")
+
   seccion = $('.PartidoContainer').children().remove();
 
   listaPartidos = $('#listas h2').map(function() {
