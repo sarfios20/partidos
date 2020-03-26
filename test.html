@@ -6,44 +6,45 @@
   <title>jQuery UI Sortable - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <style>
-  .sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
-  .seccion { min-height: 80px;}
+  .principal { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  .seccionContainer { min-height: 80px;}
+  .conjuntoContainer { min-height: 40px; padding: 10px;}
+  .OwO { min-height: 40px;}
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
   $( function() {
-    $( ".sortable" ).sortable();
-    $( ".sortable" ).disableSelection();
+    $( ".principal" ).sortable();
+    $( ".principal" ).disableSelection();
+    $( ".subContainer .conjuntoContainer" ).sortable({
+      connectWith: ".subContainer .conjuntoContainer"
+    }).disableSelection();
   } );
   </script>
 </head>
 <body>
  
-<ul class="sortable">
-  <li class="ui-state-default seccion">
-    <ul class="inner">
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-    </ul>      
-    <ul class="inner">
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-      <li class="ui-state-default"></li>
-    </ul>  
+<ul class="principal">Principal
+  <li class="ui-state-default seccionContainer">
+    <ul class="subContainer seccion">seccion
+        <ul class="conjuntoContainer sub">sub
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul>   
+        <ul class="conjuntoContainer sub">sub
+          <br>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+          <li class="ui-state-default OwO">Partidos </li>
+        </ul> 
+    </ul>       
+  </li>
+  <li class="ui-state-default seccionContainer">
+    <ul class="subContainer seccion">
 
-  </li>
-  <li class="ui-state-default seccion">
-    
-  </li>
-  <li class="ui-state-default seccion">
-    
-  </li>
-  <li class="ui-state-default seccion">
-    
+    </ul>      
   </li>
 
 </ul>
