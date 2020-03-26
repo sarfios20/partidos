@@ -48,6 +48,7 @@ function formarCoalicion(partido, lista){
 
 function GobiernoAmigo(partido, lista){
   listaAmigos = lista.slice(0, lista.indexOf('Elecciones'));
+  console.log(listaAmigos);
   listas = desarrollar(listaAmigos);
 
   appendParties(partido, "Amigo", listas);
