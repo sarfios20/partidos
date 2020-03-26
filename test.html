@@ -5,28 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Sortable - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
   <style>
-
-  .sortable1, .sortable2 {
-    border: 1px solid #eee;
-    width: 142px;
-    min-height: 20px;
-    list-style-type: none;
-    margin: 0;
-    padding: 5px 0 0 0;
-    float: left;
-    margin-right: 10px;
-    flex: 1;
-  }
-  .sortable1 li, .sortable2 li {
-    margin: 0 5px 5px 5px;
-    padding: 5px;
-    font-size: 1.2em;
-    width: 120px;
-  }
-  .sortable { display: flex; list-style-type: none; margin: 0; padding: 0; width: 60%; flex-direction: column;}
-  .sortable li { display: flex; flex: 1; margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+  .sortable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+  .seccion { min-height: 80px;}
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -34,64 +15,37 @@
   $( function() {
     $( ".sortable" ).sortable();
     $( ".sortable" ).disableSelection();
-    $( ".sortable1, .sortable2" ).sortable({
-      connectWith: ".connectedSortable"
-    }).disableSelection();
   } );
   </script>
 </head>
 <body>
  
 <ul class="sortable">
-  <li class="ui-state-default">
-    <ul class="sortable1 connectedSortable">
-      <li class="ui-state-default">Item 1</li>
-      <li class="ui-state-default">Item 2</li>
-      <li class="ui-state-default">Item 3</li>
-      <li class="ui-state-default">Item 4</li>
-      <li class="ui-state-default">Item 5</li>
-    </ul>
-    <ul class="sortable2 connectedSortable">
-      <li class="ui-state-highlight">Item 1</li>
-      <li class="ui-state-highlight">Item 2</li>
-      <li class="ui-state-highlight">Item 3</li>
-      <li class="ui-state-highlight">Item 4</li>
-      <li class="ui-state-highlight">Item 5</li>
-    </ul>
+  <li class="ui-state-default seccion">
+    <ul class="inner">
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+    </ul>      
+    <ul class="inner">
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+      <li class="ui-state-default"></li>
+    </ul>  
+
   </li>
-  <li class="ui-state-default">
-    <ul class="sortable1 connectedSortable">
-      <li class="ui-state-default">Item 1</li>
-      <li class="ui-state-default">Item 2</li>
-      <li class="ui-state-default">Item 3</li>
-      <li class="ui-state-default">Item 4</li>
-      <li class="ui-state-default">Item 5</li>
-    </ul>
-    <ul class="sortable2 connectedSortable">
-      <li class="ui-state-highlight">Item 1</li>
-      <li class="ui-state-highlight">Item 2</li>
-      <li class="ui-state-highlight">Item 3</li>
-      <li class="ui-state-highlight">Item 4</li>
-      <li class="ui-state-highlight">Item 5</li>
-    </ul>
+  <li class="ui-state-default seccion">
+    
+  </li>
+  <li class="ui-state-default seccion">
+    
+  </li>
+  <li class="ui-state-default seccion">
+    
   </li>
 
-</ul>
-<br>
-<br>
- <ul class="sortable">
-  <li class="ui-state-default">
-    
-  </li>
-  <li class="ui-state-default">
-    
-  </li>
-  <li class="ui-state-default">
-    
-  </li>
-  <li class="ui-state-default">
-    
-  </li>
 </ul>
  
  
