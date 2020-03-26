@@ -11,16 +11,30 @@ $( function() {
 });
 
 function appendParties(partido, clase, listas){
+
+  length = 0
+  sub = ""
+
   seccion = $('#'+partido+" ."+clase);
+
+
 
   listas.forEach(function( lista ) {
     contenedor = $('<li class="ui-state-default contenedorElementos"></li>');
+    if ( lista.length > length){
+      console.log(length);
+      console.log(lista);
+      length = lista.length;
+      sub = $('<li class="class="connectedSortable sub ui-sortable""></li>');
+      seccion.append(sub);
+    }
     lista.forEach(function( p ) {
       e = $('<div class="partido" data-name="'+p+'">'+p+'</div>');
+      sub.append(contenedor);
       contenedor.append(e);
     });
     //main = $('<div class="partido" data-name="'+partido+'">'+partido+'</div>');
-    seccion.append(contenedor);
+    
   });
 }
 
@@ -144,13 +158,13 @@ function update(){
     completa = todos(partido);
 
     Gobernar(partido, sinRojosE);
-    formarCoalicion(partido, sinRojosE);
+    /*formarCoalicion(partido, sinRojosE);
     GobiernoAmigo(partido, sinRojos);
     Elecciones(partido);
 
     ApoyoEnemigos(partido, sinRojosE, listarojos);
     CoalicionEnemiga(partido, listarojos, completa);
-    Enemigo(partido, listarojos);
+    Enemigo(partido, listarojos);*/
 
   });
 }
