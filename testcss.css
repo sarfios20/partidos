@@ -1,0 +1,45 @@
+body {
+    background-color: #D3D3D3;   /*  here is the color  */
+}
+
+
+.partidoListContainer{
+    display: flex;
+}
+
+.partidoList {
+    margin: 10px;
+    background-color: #506B2F;
+    padding: 10px;
+    min-height: 40px;
+    min-width: 40px;
+}
+
+.partidoPrincipal {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 60%;
+    margin: 10px;
+}
+
+.seccionContainer {
+    min-height: 80px;
+    background-color: #556B2F;
+}
+
+.OwO {
+    min-height: 40px;
+}
+
+.sub {
+    background-color: coral;
+    margin: 10px;
+    min-height: 40px;
+    padding: 10px;
+    list-style: none;
+}
+
+.partidosContainers {
+    display: flex;
+}

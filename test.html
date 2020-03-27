@@ -5,133 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>jQuery UI Sortable - Default functionality</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <style>
-  .partidoPrincipal { list-style-type: none; margin: 0; padding: 0; width: 60%; margin: 10px;}
-  .seccionContainer { min-height: 80px;}
-  .OwO { min-height: 40px;}
-  .sub { background-color: coral; margin: 10px; min-height: 40px; padding: 10px; list-style: none;}
-  .partidosContainers { display: flex; }
-  </style>
+  <link rel="stylesheet" type="text/css" href="testcss.css">
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <script>
-  $( function() {
-    $( ".partidoPrincipal" ).sortable();
-    $( ".partidoPrincipal" ).disableSelection();
-
-
-    //DINAMICAMENTE POR CADA PARTIDO
-    $( ".subContainer1" ).sortable({
-      connectWith: ".subContainer1"
-    }).disableSelection();
-    $( ".subContainer2" ).sortable({
-      connectWith: ".subContainer2"
-    }).disableSelection();
-
-    $( ".conjuntoContainer1" ).sortable({
-      connectWith: ".conjuntoContainer1"
-    }).disableSelection();
-    $( ".conjuntoContainer2" ).sortable({
-      connectWith: ".conjuntoContainer2"
-    }).disableSelection();
-
-
-  } );
-
-  </script>
+  <script type="text/javascript" src="testscript.js"></script>
 </head>
 <body>
- 
+
+<div class="partidoListContainer">
+
+</div>
+
+<button onclick="nuevoPartido()">Click me</button>
 <div class="partidosContainers">
-<ul class="partidoPrincipal">Principal1
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer1 seccion">seccion
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer1 seccion">seccion
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer1 seccion">seccion
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer1 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-</ul>
-<ul class="partidoPrincipal">Principal2
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer2 seccion">seccion
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer2 seccion">seccion
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer2 seccion">seccion
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer2 sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-</ul>
- </div>
+</div>
  
 </body>
 </html>
