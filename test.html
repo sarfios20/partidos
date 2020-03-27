@@ -8,9 +8,8 @@
   <style>
   .partidoPrincipal { list-style-type: none; margin: 0; padding: 0; width: 60%; margin: 10px;}
   .seccionContainer { min-height: 80px;}
-  .conjuntoContainer { min-height: 40px; padding: 10px;}
   .OwO { min-height: 40px;}
-  .sub { background-color: coral; margin: 10px;}
+  .sub { background-color: coral; margin: 10px; min-height: 40px; padding: 10px; list-style: none;}
   .partidosContainers { display: flex; }
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -19,27 +18,40 @@
   $( function() {
     $( ".partidoPrincipal" ).sortable();
     $( ".partidoPrincipal" ).disableSelection();
-    $( ".conjuntoContainer" ).sortable({
-      connectWith: ".conjuntoContainer"
+
+
+    //DINAMICAMENTE POR CADA PARTIDO
+    $( ".subContainer1" ).sortable({
+      connectWith: ".subContainer1"
     }).disableSelection();
-    $( ".subContainer" ).sortable({
-      connectWith: ".subContainer"
+    $( ".subContainer2" ).sortable({
+      connectWith: ".subContainer2"
     }).disableSelection();
+
+    $( ".conjuntoContainer1" ).sortable({
+      connectWith: ".conjuntoContainer1"
+    }).disableSelection();
+    $( ".conjuntoContainer2" ).sortable({
+      connectWith: ".conjuntoContainer2"
+    }).disableSelection();
+
+
   } );
+
   </script>
 </head>
 <body>
  
 <div class="partidosContainers">
-<ul class="partidoPrincipal">Principal
+<ul class="partidoPrincipal">Principal1
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer1 seccion">seccion
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
@@ -47,14 +59,13 @@
     </ul>       
   </li>
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer1 seccion">seccion
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
@@ -62,60 +73,13 @@
     </ul>       
   </li>
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer1 seccion">seccion
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-</ul>
-<ul class="partidoPrincipal">Principal
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul> 
-    </ul>       
-  </li>
-  <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-          <li class="ui-state-default OwO">Partidos </li>
-        </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
+        <ul class="conjuntoContainer1 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
@@ -123,15 +87,15 @@
     </ul>       
   </li>
 </ul>
-<ul class="partidoPrincipal">Principal
+<ul class="partidoPrincipal">Principal2
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer2 seccion">seccion
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
@@ -139,14 +103,13 @@
     </ul>       
   </li>
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer2 seccion">seccion
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
@@ -154,14 +117,13 @@
     </ul>       
   </li>
   <li class="ui-state-default seccionContainer">
-    <ul class="subContainer seccion">seccion
-        <ul class="conjuntoContainer sub">sub
+    <ul class="subContainer2 seccion">seccion
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
         </ul>   
-        <ul class="conjuntoContainer sub">sub
-          <br>
+        <ul class="conjuntoContainer2 sub">sub
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
           <li class="ui-state-default OwO">Partidos </li>
