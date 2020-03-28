@@ -1,27 +1,48 @@
-$( function(){
-
-});
 
 function nuevoPartido (){
   partidoListContainer = $('.partidoListContainer');
   numero = partidoListContainer.children().length + 1;
-  partido = $('<div class="partidoList"></div>');
-  lista = $('<ul class="listaPartidosPrincipal">Partido'+numero+'\
+  partido = $('<div class="partidoList">Partido'+numero+'</div>').attr('data-name','Partido'+numero); ;
+  lista = $('<ul class="listaPartidosPrincipal">\
             </ul>');
 
   partido.append(lista);
   partidoListContainer.append(partido);
-  
-
-  array = partidoListContainer.children().text().trim();
-  array = array.split("            ");
 
   update();
+}
+
+function updateP ( partido, listaPartidos){
+
+  div = $('.partidoList[data-name="'+partido+'"]');
+
+  for (i = div.children().length; i < listaPartidos.length; i++) {
+    li = $('<li class="ui-state-default OwO">'+listaPartidos[i]+' </li>');
+    div.append(li);
+  }
+
+  
+
 }
 
 function update (){
 
   partidoListContainer = $('.partidoListContainer');
+
+  array = [];
+
+  for (i = 0; i < partidoListContainer.children().length; i++) {
+    console.log(partidoListContainer.children().contents());
+    //array.push(partidoListContainer.children().contents()[i].nodeValue);
+  }
+
+
+
+  array.forEach(function( p ) {
+
+    updateP(p, array);
+  });
+
   numero = partidoListContainer.children().length;
   nuevoPartidoD(numero);
 
@@ -88,4 +109,7 @@ function nuevoPartidoD (index){
 
   $( ".partidoPrincipal" ).sortable();
   $( ".partidoPrincipal" ).disableSelection();
+
+  $( ".listaPartidosPrincipal" ).sortable();
+  $( ".listaPartidosPrincipal" ).disableSelection();
 }
