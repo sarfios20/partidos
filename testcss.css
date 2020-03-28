@@ -2,6 +2,9 @@ body {
     background-color: #D3D3D3;   /*  here is the color  */
 }
 
+.listaPartidos{
+    display: flex;
+}
 
 .partidoListContainer{
     display: flex;
@@ -9,7 +12,7 @@ body {
 
 .partidoList {
     margin: 10px;
-    background-color: #506B2F;
+    background-color: #FFD700;
     padding: 10px;
     min-height: 40px;
     min-width: 40px;

@@ -1,34 +1,28 @@
 $( function(){
-  $( ".partidoPrincipal" ).sortable();
-  $( ".partidoPrincipal" ).disableSelection();
 
-  //DINAMICAMENTE POR CADA PARTIDO
-  $( ".subContainer1" ).sortable({
-    connectWith: ".subContainer1"
-  }).disableSelection();
-  $( ".subContainer2" ).sortable({
-    connectWith: ".subContainer2"
-  }).disableSelection();
-
-  $( ".conjuntoContainer1" ).sortable({
-    connectWith: ".conjuntoContainer1"
-  }).disableSelection();
-  $( ".conjuntoContainer2" ).sortable({
-    connectWith: ".conjuntoContainer2"
-  }).disableSelection();
 });
 
 function nuevoPartido (){
   partidoListContainer = $('.partidoListContainer');
-  numero = partidoListContainer.children().length;
+  numero = partidoListContainer.children().length + 1;
   partido = $('<div class="partidoList"></div>');
+  lista = $('<ul class="listaPartidosPrincipal">Partido'+numero+'\
+            </ul>');
+
+  partido.append(lista);
   partidoListContainer.append(partido);
+  
+
+  array = partidoListContainer.children().text().trim();
+  array = array.split("            ");
+
   update();
 }
 
 function update (){
-  numero = $('.partidosContainers').children().length;
-  console.log(numero);
+
+  partidoListContainer = $('.partidoListContainer');
+  numero = partidoListContainer.children().length;
   nuevoPartidoD(numero);
 
   
