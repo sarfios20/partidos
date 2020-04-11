@@ -31,11 +31,12 @@ function update (){
 
   array = [];
 
+  /*
   for (i = 0; i < partidoListContainer.children().length; i++) {
     console.log(partidoListContainer.children().contents());
     //array.push(partidoListContainer.children().contents()[i].nodeValue);
   }
-
+*/
 
 
   array.forEach(function( p ) {
