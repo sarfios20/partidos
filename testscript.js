@@ -31,22 +31,19 @@ function update (){
 
   array = [];
 
-  /*
+  
   for (i = 0; i < partidoListContainer.children().length; i++) {
-    console.log(partidoListContainer.children().contents());
-    //array.push(partidoListContainer.children().contents()[i].nodeValue);
+    array.push(partidoListContainer.children().get(i).innerText);
   }
-*/
 
-
+  console.log(array);
+/*
   array.forEach(function( p ) {
-
     updateP(p, array);
-  });
+  });*/
 
   numero = partidoListContainer.children().length;
   nuevoPartidoD(numero);
-
   
 }
 
