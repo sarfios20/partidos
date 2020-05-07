@@ -14,13 +14,23 @@ function nuevoPartido (){
   update();
 }
 
+function change(elemt){
+    console.log(elemt);
+
+    if (elemt.style.color != "red"){
+      elemt.style.color = "red";
+    }else{
+      elemt.style.color = "black";
+    }
+}
+
 function updateP ( partido, listaPartidos){
 
   div = $('.partidoList[data-name="'+partido+'"] ul');
   div.empty();
 
   for (i = div.children().length; i < listaPartidos.length; i++) {
-    li = $('<li class="ui-state-default OwO">'+listaPartidos[i]+' </li>');
+    li = $('<li class="ui-state-default OwO" onclick="change(this)">'+listaPartidos[i]+' </li>');
     div.append(li);
   }
 
