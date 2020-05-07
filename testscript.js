@@ -17,12 +17,16 @@ function nuevoPartido (){
 function updateP ( partido, listaPartidos){
 
   div = $('.partidoList[data-name="'+partido+'"] ul');
+  div.empty();
 
   for (i = div.children().length; i < listaPartidos.length; i++) {
     li = $('<li class="ui-state-default OwO">'+listaPartidos[i]+' </li>');
     div.append(li);
   }
 
+  e = $('<li class="ui-state-default OwO">\
+          Elecciones </li>');
+  div.append(e);
   
 
 }
@@ -38,8 +42,6 @@ function update (){
     UwU = $('.partidoList h1');
     array.push(UwU[i].innerText);
   }
-
-  console.log(array);
 
   array.forEach(function( p ) {
     updateP(p, array);
@@ -110,18 +112,6 @@ function nuevoPartidoD (index){
     <li class="ui-state-default seccionContainer">\
     <div class= seccion">\
         <h1>Elecciones</h1>\
-        <div class="subContainer'+index+'">\
-        <ul class="conjuntoContainer'+index+' sub">sub\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-        </ul>   \
-        <ul class="conjuntoContainer'+index+' sub">sub\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-        </ul> \
-        </div> \
     </div>\
   </li>\
   </li>\
@@ -142,6 +132,24 @@ function nuevoPartidoD (index){
         </div> \
     </div>\
   </li>\
+  </li>\
+   </li>\
+    <li class="ui-state-default seccionContainer">\
+    <div class= seccion">\
+        <h1>Gobierno con Enemigo</h1>\
+        <div class="subContainer'+index+'">\
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul>   \
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul> \
+        </div> \
+    </div>\
   </li>\
     <li class="ui-state-default seccionContainer">\
     <div class= seccion">\
@@ -164,6 +172,24 @@ function nuevoPartidoD (index){
     <li class="ui-state-default seccionContainer">\
     <div class= seccion">\
         <h1>Gobierno Enemigo</h1>\
+        <div class="subContainer'+index+'">\
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul>   \
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul> \
+        </div> \
+    </div>\
+  </li>\
+  </li>\
+    <li class="ui-state-default seccionContainer">\
+    <div class= seccion">\
+        <h1>Gobierno Enemigo Apoyado</h1>\
         <div class="subContainer'+index+'">\
         <ul class="conjuntoContainer'+index+' sub">sub\
           <li class="ui-state-default OwO">Partidos </li>\
