@@ -3,7 +3,7 @@ function nuevoPartido (){
   partidoListContainer = $('.partidoListContainer');
   numero = partidoListContainer.children().length + 1;
   partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+numero);
-  h1 = $('<h1>Partido'+numero+'</h1>');
+  h1 = $('<h1 class="editable">Partido'+numero+'</h1>').attr('data-name','Partido'+numero);
   lista = $('<ul class="listaPartidosPrincipal">\
             </ul>');
 
@@ -14,14 +14,71 @@ function nuevoPartido (){
   update();
 }
 
-function change(elemt){
-    console.log(elemt);
+$(document).on("click", ".btnSave",
+    function()
+    {
+      var msglist = $(this).parent();
 
+      var show = msglist.data("name");
+
+      newText = $(this).siblings("form")
+                       .children(".editBox")
+                       .val().replace(/"/g, "");
+      console.log($(this).parent()[0]);
+      $(this).parent().html(newText);
+      console.log($(this).parent()[0]);
+      lel = "."+show;
+
+      console.log($(this).parent()[0]);
+      $('[data-name="'+show+'"]').html(newText);
+      $('[data-name="'+show+'"]').attr('data-name', newText);
+    }
+);
+
+function replaceHTML(){
+    oldText = $(this).html().replace(/"/g, "");
+    $(this).html("").html("<form><input type=\"text\" class=\"editBox\" value=\"" + oldText + "\" /> </form><a href=\"#\" class=\"btnSave\">Save changes</a> <a href=\"#\" class=\"btnDiscard\">Discard changes</a>");
+}
+
+function change(elemt){
     if (elemt.style.color != "red"){
       elemt.style.color = "red";
     }else{
       elemt.style.color = "black";
     }
+}
+
+function updateLista(){
+
+  partidos = $('.partidoPrincipal');
+  console.log(partidos);
+//LUEGO
+
+/*
+  seccion = $('.PartidoContainer').children().remove();
+
+  listaPartidos = $('#listas h2').map(function() {
+    return $(this).text();
+  }).get();
+
+  listaPartidos.forEach(function( partido ) {
+
+    nuevoPartido(partido);
+    sinRojosE = niRojosNiElecciones(partido);
+    sinRojos = getSinRojos(partido);
+
+    listarojos = rojos(partido);
+
+    completa = todos(partido);
+
+    Gobernar(partido, sinRojosE);
+    formarCoalicion(partido, sinRojosE);
+    GobiernoAmigo(partido, sinRojos);
+    Elecciones(partido);
+
+    ApoyoEnemigos(partido, sinRojosE, listarojos);
+    CoalicionEnemiga(partido, listarojos, completa);
+    Enemigo(partido, listarojos);*/
 }
 
 function updateP ( partido, lista){
@@ -35,7 +92,7 @@ function updateP ( partido, lista){
   div.append(li);
 
   for (i = div.children().length-1; i < listaPartidos.length; i++) {
-    li = $('<li class="ui-state-default OwO" onclick="change(this)">'+listaPartidos[i]+' </li>');
+    li = $('<li class="ui-state-default OwO" onclick="change(this)">'+listaPartidos[i]+' </li>').attr('data-name',listaPartidos[i]);
     div.append(li);
   }
 
@@ -62,7 +119,6 @@ function update (){
 
   numero = partidoListContainer.children().length;
   nuevoPartidoD(numero);
-  
 }
 
 function nuevoPartidoD (index){
@@ -233,4 +289,5 @@ function nuevoPartidoD (index){
 
   $( ".listaPartidosPrincipal" ).sortable();
   $( ".listaPartidosPrincipal" ).disableSelection();
+  $(".editable").bind("dblclick", replaceHTML);
 }
