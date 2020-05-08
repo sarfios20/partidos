@@ -24,12 +24,17 @@ function change(elemt){
     }
 }
 
-function updateP ( partido, listaPartidos){
+function updateP ( partido, lista){
+  listaPartidos = lista.slice();
+  listaPartidos.splice(listaPartidos.indexOf(partido), 1);
 
   div = $('.partidoList[data-name="'+partido+'"] ul');
   div.empty();
 
-  for (i = div.children().length; i < listaPartidos.length; i++) {
+  li = $('<li class="ui-state-default OwO" onclick="change(this)">'+partido+' </li>');
+  div.append(li);
+
+  for (i = div.children().length-1; i < listaPartidos.length; i++) {
     li = $('<li class="ui-state-default OwO" onclick="change(this)">'+listaPartidos[i]+' </li>');
     div.append(li);
   }
@@ -37,8 +42,6 @@ function updateP ( partido, listaPartidos){
   e = $('<li class="ui-state-default OwO">\
           Elecciones </li>');
   div.append(e);
-  
-
 }
 
 function update (){
