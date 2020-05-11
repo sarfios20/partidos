@@ -51,7 +51,11 @@ function change(elemt){
 function updateLista(){
 
   partidos = $('.partidoPrincipal');
-  console.log(partidos);
+  
+
+  listaPartidos = $('#listas h2').map(function() {
+    return $(this).text();
+  }).get();
 //LUEGO
 
 /*
@@ -124,8 +128,9 @@ function update (){
 function nuevoPartidoD (index){
 
   container = $('.partidosContainers');
-
-  jquery = '<ul class="partidoPrincipal">Principal'+index+' \
+  
+  jquery = '<ul class="partidoPrincipal">\
+  <h1 data-name="Partido'+index+'" >Partido'+index+'</h1>\
   <li class="ui-state-default seccionContainer">\
     <div class= seccion">\
         <h1>Gobernar</h1>\
@@ -274,7 +279,7 @@ function nuevoPartidoD (index){
     </div>\
   </li>\
   </ul>'
-  
+
   container.append(jquery);
 
   $( ".subContainer"+index ).sortable({
