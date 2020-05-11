@@ -25,11 +25,10 @@ $(document).on("click", ".btnSave",
                        .children(".editBox")
                        .val().replace(/"/g, "");
       console.log($(this).parent()[0]);
-      $(this).parent().html(newText);
+      console.log(newText);
+      //$(this).parent().html(newText);
       console.log($(this).parent()[0]);
-      lel = "."+show;
 
-      console.log($(this).parent()[0]);
       $('[data-name="'+show+'"]').html(newText);
       $('[data-name="'+show+'"]').attr('data-name', newText);
     }
