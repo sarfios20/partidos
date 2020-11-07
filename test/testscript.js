@@ -121,7 +121,51 @@ function update (){
   });
 
   numero = partidoListContainer.children().length;
-  nuevoPartidoD(numero);
+
+  console.log(numero);
+
+  //nuevoPartidoD(numero);
+  partidoHeader();
+  //partidoGobernar(numero);
+}
+
+function partidoHeader (){
+
+  container = $('.partidosContainers');
+
+  jquery = '<ul class="partidoPrincipal">\
+  <h1 data-name="Partido" >Partido</h1>'
+
+  /*
+  jquery = '<ul class="partidoPrincipal">\
+  <h1 data-name="Partido'+index+'" >Partido'+index+'</h1>'
+*/
+  container.append(jquery);
+}
+
+function partidoGobernar (index){
+
+  container = $('.partidoPrincipal');
+  
+  jquery = '<li class="ui-state-default seccionContainer">\
+    <div class= seccion">\
+        <h1>Gobernar</h1>\
+        <div class="subContainer'+index+'">\
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul>   \
+        <ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul> \
+        </div> \
+    </div>       \
+  </li>'
+
+  container.append(jquery);
 }
 
 function nuevoPartidoD (index){
