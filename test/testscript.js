@@ -16,12 +16,14 @@ function nuevoPartidoMiniLista (index, contenedor){
   partido.append(lista);
   contenedor.append(partido);
 
-  nombresPartidos = ListaNombres('.ContainerMiniListas', 'h1');
+  let nombresPartidos = ListaNombres('.ContainerMiniListas', 'h1');
   console.log(nombresPartidos);
 
-  nombresMiniListaPartido = ListaNombres('.partidoList[data-name="Partido'+index+'"]', 'li');
+  let nombresMiniListaPartido = ListaNombres('.partidoList[data-name="Partido'+index+'"]', 'li');
   console.log(nombresMiniListaPartido);
 
+  let difference = nombresPartidos.filter(x => !nombresMiniListaPartido.includes(x));
+  console.log(difference);
 
   $( ".MiniListaPartido" ).sortable();
   $( ".MiniListaPartido" ).disableSelection();
