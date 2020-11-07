@@ -148,26 +148,16 @@ function updateLista(){
 
 function updateMiniListaPartido ( partido, lista){
 
-let nombresMiniListaPartido = ListaNombres('.partidoList[data-name="Partido'+index+'"]', 'li');
-console.log(nombresMiniListaPartido);
+  let nombresMiniListaPartido = ListaNombres('.partidoList[data-name="'+partido+'"]', 'li');
 
-let difference = nombresPartidos.filter(x => !nombresMiniListaPartido.includes(x));
-console.log(difference);
+  let difference = lista.filter(x => !nombresMiniListaPartido.includes(x));
 
-for (i = 0; i < difference.length; i++) {
-  li = $('<li class="ui-state-default OwO">'+difference[i]+' </li>').attr('data-name', difference[i]);
-    lista.append(li);
-}
-/*
-  listaPartidos = lista.slice();
-  listaPartidos.splice(listaPartidos.indexOf(partido), 1);
-  div = $('.partidoList[data-name="'+partido+'"] ul');
+  MiniListaPartidos = $('.partidoList[data-name="'+partido+'"] ul');
 
-  for (i = div.children.length-2; i < listaPartidos.length; i++) {
-    li = $('<li class="ui-state-default OwO">'+listaPartidos[i]+' </li>').attr('data-name', listaPartidos[i]);
-    div.append(li);
-  }*/
-
+  for (i = 0; i < difference.length; i++) {
+    li = $('<li class="ui-state-default OwO">'+difference[i]+' </li>').attr('data-name', difference[i]);
+    MiniListaPartidos.append(li);
+  }
 
 }
 
@@ -184,6 +174,8 @@ function updateMiniListas (){
 function update (){
 
   updateMiniListas();
+
+  
   /*ContainerMiniListas = $('.ContainerMiniListas');
 
   array = [];
