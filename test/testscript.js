@@ -1,17 +1,84 @@
 
+function nuevoPartidoMiniLista (index, contenedor){
+  partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+index);
+  h1 = $('<h1 class="editable">Partido'+index+'</h1>')
+  lista = $('<ul class="MiniListaPartido">\
+            </ul>');
+
+  li = $('<li class="ui-state-default OwO">Partido'+index+' </li>').attr('data-name','Partido'+index);
+  lista.append(li);
+
+  e = $('<li class="ui-state-default OwO">\
+        Elecciones </li>');
+  lista.append(e);
+
+  partido.append(h1);
+  partido.append(lista);
+  contenedor.append(partido);
+
+  nombresPartidos = ListaNombres('.ContainerMiniListas', 'h1');
+  console.log(nombresPartidos);
+
+  nombresMiniListaPartido = ListaNombres('.partidoList[data-name="Partido'+index+'"]', 'li');
+  console.log(nombresMiniListaPartido);
+
+
+  $( ".MiniListaPartido" ).sortable();
+  $( ".MiniListaPartido" ).disableSelection();
+
+  //update();
+}
+
+function ListaNombres (contenedor, elemento){
+  elementos = $(contenedor).find(elemento);
+  nombresPartidos = [];
+
+  for (i = 0; i < elementos.length; i++) {
+    nombresPartidos.push(elementos[i].innerText);
+  }
+  return nombresPartidos;
+}
+
+/*
+
+function ListaNombresMiniLista (){
+  MiniListaPartido = $('.MiniListaPartido');
+
+  nombresPartidos = [];
+
+  for (i = 0; i < MiniListaPartido.children().length; i++) {
+    nombre = $('.partidoList li');
+    nombresPartidos.push(nombre[i].innerText);
+  }
+  return nombresPartidos;
+}
+
+function ListaNombresPartidos (){
+  ContainerMiniListas = $('.ContainerMiniListas');
+
+  nombresPartidos = [];
+
+  for (i = 0; i < ContainerMiniListas.children().length; i++) {
+    nombre = $('.partidoList h1');
+    nombresPartidos.push(nombre[i].innerText);
+  }
+  return nombresPartidos;
+}*/
+
 function nuevoPartido (){
-  partidoListContainer = $('.partidoListContainer');
-  numero = partidoListContainer.children().length + 1;
-  partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+numero);
+  ContainerMiniListas = $('.ContainerMiniListas');
+  numero = ContainerMiniListas.children().length + 1;
+  nuevoPartidoMiniLista (numero, ContainerMiniListas);
+  /*partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+numero);
   h1 = $('<h1 class="editable">Partido'+numero+'</h1>').attr('data-name','Partido'+numero);
-  lista = $('<ul class="listaPartidosPrincipal">\
+  lista = $('<ul class="MiniListaPartido">\
             </ul>');
 
   partido.append(h1);
   partido.append(lista);
-  partidoListContainer.append(partido);
+  ContainerMiniListas.append(partido);
 
-  update();
+  update();*/
 }
 
 $(document).on("click", ".btnSave",
@@ -84,34 +151,38 @@ function updateLista(){
     Enemigo(partido, listarojos);*/
 }
 
-function updateP ( partido, lista){
+function updateMiniListaPartido ( partido, lista){
   listaPartidos = lista.slice();
   listaPartidos.splice(listaPartidos.indexOf(partido), 1);
-
   div = $('.partidoList[data-name="'+partido+'"] ul');
-  div.empty();
 
-  li = $('<li class="ui-state-default OwO" onclick="change(this)">'+partido+' </li>');
-  div.append(li);
-
-  for (i = div.children().length-1; i < listaPartidos.length; i++) {
-    li = $('<li class="ui-state-default OwO" onclick="change(this)">'+listaPartidos[i]+' </li>').attr('data-name',listaPartidos[i]);
+  for (i = div.children.length-2; i < listaPartidos.length; i++) {
+    li = $('<li class="ui-state-default OwO">'+listaPartidos[i]+' </li>').attr('data-name', listaPartidos[i]);
     div.append(li);
   }
+}
 
-  e = $('<li class="ui-state-default OwO">\
-          Elecciones </li>');
-  div.append(e);
+function updateMiniListas (){
+
+  nombresPartidos = ListaNombresPartidos();
+
+  nombresPartidos.forEach(function( partido ) {
+    updateMiniListaPartido(partido, nombresPartidos);
+  });
+
+  numero = ContainerMiniListas.children().length;
+
 }
 
 function update (){
 
-  partidoListContainer = $('.partidoListContainer');
+  updateMiniListas();
+  /*ContainerMiniListas = $('.ContainerMiniListas');
 
   array = [];
 
   
-  for (i = 0; i < partidoListContainer.children().length; i++) {
+  for (i = 0; i < ContainerMiniListas.children().length; i++) {
     UwU = $('.partidoList h1');
     array.push(UwU[i].innerText);
   }
@@ -120,13 +191,15 @@ function update (){
     updateP(p, array);
   });
 
-  numero = partidoListContainer.children().length;
+  numero = ContainerMiniListas.children().length;
 
   console.log(numero);
 
   //nuevoPartidoD(numero);
   partidoHeader();
-  //partidoGobernar(numero);
+  //partidoGobernar(numero);*/
+
+
 }
 
 function partidoHeader (){
@@ -335,7 +408,7 @@ function nuevoPartidoD (index){
   $( ".partidoPrincipal" ).sortable();
   $( ".partidoPrincipal" ).disableSelection();
 
-  $( ".listaPartidosPrincipal" ).sortable();
-  $( ".listaPartidosPrincipal" ).disableSelection();
+  $( ".MiniListaPartido" ).sortable();
+  $( ".MiniListaPartido" ).disableSelection();
   $(".editable").bind("dblclick", replaceHTML);
 }
