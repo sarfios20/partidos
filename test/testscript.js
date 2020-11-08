@@ -5,7 +5,7 @@ function nuevoPartidoMiniLista (index, contenedor){
   lista = $('<ul class="MiniListaPartido">\
             </ul>');
 
-  li = $('<li class="ui-state-default OwO">Partido'+index+' </li>').attr('data-name','Partido'+index);
+  li = $('<li class="ui-state-default OwO" onclick="change(this)">Partido'+index+' </li>').attr('data-name','Partido'+index);
   lista.append(li);
 
   e = $('<li class="ui-state-default OwO">\
@@ -20,8 +20,6 @@ function nuevoPartidoMiniLista (index, contenedor){
 
   $( ".MiniListaPartido" ).sortable();
   $( ".MiniListaPartido" ).disableSelection();
-
-  update();
 }
 
 function ListaNombres (contenedor, elemento){
@@ -34,46 +32,84 @@ function ListaNombres (contenedor, elemento){
   return nombresPartidos;
 }
 
-/*
+function nuevoPartidoListaCompleta (nombre, ContainerListasCompletas){
 
-function ListaNombresMiniLista (){
-  MiniListaPartido = $('.MiniListaPartido');
+  contenedorPartido = '<ul class="partidoPrincipal">\
+  <h1 data-name="'+nombre+'" >'+nombre+'</h1>'
 
-  nombresPartidos = [];
+  ContainerListasCompletas.append(contenedorPartido);
 
-  for (i = 0; i < MiniListaPartido.children().length; i++) {
-    nombre = $('.partidoList li');
-    nombresPartidos.push(nombre[i].innerText);
-  }
-  return nombresPartidos;
 }
 
-function ListaNombresPartidos (){
-  ContainerMiniListas = $('.ContainerMiniListas');
+function partidoGobernar (partido, nombresListaPartido){
+  container = $('.partidoPrincipal');
+  container.empty();
 
-  nombresPartidos = [];
+  header = '<li class="ui-state-default seccionContainer">\
+    <div class= seccion">\
+        <h1>Gobernar</h1>';
+  container.append(header);
 
-  for (i = 0; i < ContainerMiniListas.children().length; i++) {
-    nombre = $('.partidoList h1');
-    nombresPartidos.push(nombre[i].innerText);
-  }
-  return nombresPartidos;
-}*/
+  gobernar = '<div class="subContainer">\
+        <ul class="conjuntoContainer sub">sub\
+        </ul>';
+
+  nombresListaPartido.forEach(function( partido ) {
+    
+  });
+
+  container.append(gobernar);
+
+/*
+            <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+
+  gobernarEnemigos = '<ul class="conjuntoContainer'+index+' sub">sub\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+          <li class="ui-state-default OwO">Partidos </li>\
+        </ul> \
+        </div> \
+    </div>       \
+  </li>';
+
+  container.append(jquery);*/
+}
+
+function updateListaCompletaPartido (partido, lista){
+
+  let nombresListaPartido = ListaNombres('.partidoList[data-name="'+partido+'"]', 'li');
+  nombresListaPartido.splice(nombresListaPartido.indexOf("Elecciones"), 1);
+  partidoGobernar (partido, nombresListaPartido);
+
+/*
+  console.log(partido);
+  console.log(nombresMiniListaPartido);*/
+
+}
+
+function updateListasCompletas (){
+
+  partidosActualizar = $('.partidosContainers').children();
+
+  let nombresPartidos = ListaNombres('.ContainerMiniListas', 'h1');
+
+  nombresPartidos.forEach(function( partido ) {
+    updateListaCompletaPartido(partido, nombresPartidos);
+  });
+
+}
 
 function nuevoPartido (){
   ContainerMiniListas = $('.ContainerMiniListas');
   numero = ContainerMiniListas.children().length + 1;
   nuevoPartidoMiniLista (numero, ContainerMiniListas);
-  /*partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+numero);
-  h1 = $('<h1 class="editable">Partido'+numero+'</h1>').attr('data-name','Partido'+numero);
-  lista = $('<ul class="MiniListaPartido">\
-            </ul>');
-
-  partido.append(h1);
-  partido.append(lista);
-  ContainerMiniListas.append(partido);
-
-  update();*/
+  updateMiniListas();
+  let nombresPartidos = ListaNombres('.ContainerMiniListas', 'h1');
+  ContainerListasCompletas = $('.partidosContainers');
+  nuevoPartidoListaCompleta (nombresPartidos[nombresPartidos.length - 1], ContainerListasCompletas);
+  updateListasCompletas();
 }
 
 $(document).on("click", ".btnSave",
@@ -117,33 +153,7 @@ function updateLista(){
   listaPartidos = $('#listas h2').map(function() {
     return $(this).text();
   }).get();
-//LUEGO
 
-/*
-  seccion = $('.PartidoContainer').children().remove();
-
-  listaPartidos = $('#listas h2').map(function() {
-    return $(this).text();
-  }).get();
-
-  listaPartidos.forEach(function( partido ) {
-
-    nuevoPartido(partido);
-    sinRojosE = niRojosNiElecciones(partido);
-    sinRojos = getSinRojos(partido);
-
-    listarojos = rojos(partido);
-
-    completa = todos(partido);
-
-    Gobernar(partido, sinRojosE);
-    formarCoalicion(partido, sinRojosE);
-    GobiernoAmigo(partido, sinRojos);
-    Elecciones(partido);
-
-    ApoyoEnemigos(partido, sinRojosE, listarojos);
-    CoalicionEnemiga(partido, listarojos, completa);
-    Enemigo(partido, listarojos);*/
 }
 
 function updateMiniListaPartido ( partido, lista){
@@ -155,7 +165,7 @@ function updateMiniListaPartido ( partido, lista){
   MiniListaPartidos = $('.partidoList[data-name="'+partido+'"] ul');
 
   for (i = 0; i < difference.length; i++) {
-    li = $('<li class="ui-state-default OwO">'+difference[i]+' </li>').attr('data-name', difference[i]);
+    li = $('<li class="ui-state-default OwO" onclick="change(this)">'+difference[i]+' </li>').attr('data-name', difference[i]);
     MiniListaPartidos.append(li);
   }
 
@@ -171,74 +181,7 @@ function updateMiniListas (){
 
 }
 
-function update (){
 
-  updateMiniListas();
-
-  
-  /*ContainerMiniListas = $('.ContainerMiniListas');
-
-  array = [];
-
-  
-  for (i = 0; i < ContainerMiniListas.children().length; i++) {
-    UwU = $('.partidoList h1');
-    array.push(UwU[i].innerText);
-  }
-
-  array.forEach(function( p ) {
-    updateP(p, array);
-  });
-
-  numero = ContainerMiniListas.children().length;
-
-  console.log(numero);
-
-  //nuevoPartidoD(numero);
-  partidoHeader();
-  //partidoGobernar(numero);*/
-
-
-}
-
-function partidoHeader (){
-
-  container = $('.partidosContainers');
-
-  jquery = '<ul class="partidoPrincipal">\
-  <h1 data-name="Partido" >Partido</h1>'
-
-  /*
-  jquery = '<ul class="partidoPrincipal">\
-  <h1 data-name="Partido'+index+'" >Partido'+index+'</h1>'
-*/
-  container.append(jquery);
-}
-
-function partidoGobernar (index){
-
-  container = $('.partidoPrincipal');
-  
-  jquery = '<li class="ui-state-default seccionContainer">\
-    <div class= seccion">\
-        <h1>Gobernar</h1>\
-        <div class="subContainer'+index+'">\
-        <ul class="conjuntoContainer'+index+' sub">sub\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-        </ul>   \
-        <ul class="conjuntoContainer'+index+' sub">sub\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-        </ul> \
-        </div> \
-    </div>       \
-  </li>'
-
-  container.append(jquery);
-}
 
 function nuevoPartidoD (index){
 
