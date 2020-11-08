@@ -45,7 +45,7 @@ function reducir (partido, NumPunteros, lista){
 
   //let listaPartidos = lista.slice();
   resultados = [[]]
-  aux = []
+
   if (NumPunteros == 0){
     return [[partido]]
   }
@@ -67,8 +67,11 @@ console.log('++++')*/
     //console.log('aaaa')
     owo = reducir(lista[i], NumPunteros-1, lista.slice(i));
     owo.forEach(function(array){
-      array = array.concat([partido], owo);
-      resultados.push(array);
+      lel = []
+      lel.push(partido);
+      aux = []
+      aux = lel.concat(array);
+      resultados.push(aux);
     });
     
 
