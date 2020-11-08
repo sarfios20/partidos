@@ -42,45 +42,24 @@ function nuevoPartidoListaCompleta (nombre, ContainerListasCompletas){
 }
 
 function reducir (partido, NumPunteros, lista){
-
-  //let listaPartidos = lista.slice();
-  resultados = [[]]
+  let resultados = [];
 
   if (NumPunteros == 0){
-    return [[partido]]
+    return [[partido]];
   }
 
-    /*console.log('++++')
-    console.log(partido);
-    console.log( NumPunteros);
-    console.log(lista);
-console.log('++++')*/
   max = lista.length - NumPunteros;
 
-  
-
   for (i = 0; i <= max; i++){
-    /*console.log('------')
-    console.log(listaPartidos[i]);
-    console.log( NumPunteros-1);
-    console.log(listaPartidos.slice(i+1));*/
-    //console.log('aaaa')
-    owo = reducir(lista[i], NumPunteros-1, lista.slice(i));
+    owo = reducir(lista[i], NumPunteros-1, lista.slice(i+1));
     owo.forEach(function(array){
-      lel = []
-      lel.push(partido);
-      aux = []
-      aux = lel.concat(array);
-      resultados.push(aux);
+      //console.log(array);
+      lel = [partido].concat(array);
+      resultados.push(lel);
     });
-    
-
   }
   return resultados
-  
-//console.log('******')
 }
-
 
 function partidoGobernar (partido, nombresListaPartido){
   listaPartido = nombresListaPartido.slice();
@@ -151,6 +130,7 @@ function updateListasCompletas (){
 }
 
 function nuevoPartido (){
+  console.log('*********');
   ContainerMiniListas = $('.ContainerMiniListas');
   numero = ContainerMiniListas.children().length + 1;
   nuevoPartidoMiniLista (numero, ContainerMiniListas);
