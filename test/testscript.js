@@ -2,7 +2,7 @@
 function nuevoPartidoMiniLista (index, contenedor){
   partido = $('<div class="partidoList"></div>').attr('data-name','Partido'+index);
   h1 = $('<h1 class="editable">Partido'+index+'</h1>')
-  lista = $('<ul class="MiniListaPartido">\
+  lista = $('<ul class="MiniListaPartido sortable">\
             </ul>');
 
   li = $('<li class="ui-state-default OwO" onclick="change(this)">Partido'+index+' </li>').attr('data-name','Partido'+index);
@@ -15,11 +15,6 @@ function nuevoPartidoMiniLista (index, contenedor){
   partido.append(h1);
   partido.append(lista);
   contenedor.append(partido);
-
-
-
-  $( ".MiniListaPartido" ).sortable();
-  $( ".MiniListaPartido" ).disableSelection();
 }
 
 function ListaNombres (contenedor, elemento){
@@ -79,31 +74,27 @@ function partidoGobernar (partido, nombresListaPartido){
 
   container.children().not(':first-child').remove();
 
-  let header = $('<li class="ui-state-default seccionContainer">\
+  let header = $('<li class="seccionContainer">\
     <div class= seccion">\
         <h1>Gobernar</h1>');
   container.append(header);
 
-  let gobernar = $('<div class="subContainer">');
+  let gobernar = $('<div class="subContainer sortable">');
 
   let secciones = seccionGobierno(partido, listaPartido);
 
   secciones.forEach(function( array ) {
-    let seccion = $('<ul class="conjuntoContainer sub">sub\
+    let seccion = $('<ul class="ui-sortable conjuntoContainer sub sortableConnected'+partido+'">sub\
               </ul>');
-    //console.log(array);
     array.forEach(function( p ) {
       let opcion = $('<li class="ui-state-default OwO">'+p+'</li>');
       seccion.append(opcion);
-      //console.log(p);
     });
-  gobernar.append(seccion);
-  });
+    gobernar.append(seccion);
+    });
+
 
   container.append(gobernar);
-
-  //console.log(secciones);
-
 }
 
 function updateListaCompletaPartido (partido, lista){
@@ -127,7 +118,6 @@ function updateListasCompletas (){
 }
 
 function nuevoPartido (){
-  console.log('*********');
   ContainerMiniListas = $('.ContainerMiniListas');
   numero = ContainerMiniListas.children().length + 1;
   nuevoPartidoMiniLista (numero, ContainerMiniListas);
@@ -136,6 +126,14 @@ function nuevoPartido (){
   ContainerListasCompletas = $('.partidosContainers');
   nuevoPartidoListaCompleta (nombresPartidos[nombresPartidos.length - 1], ContainerListasCompletas);
   updateListasCompletas();
+  $( ".sortable" ).sortable();
+  $( ".sortable" ).disableSelection();
+
+  nombresPartidos.forEach(function( p ) {
+    $( ".sortableConnected"+p ).sortable({
+      connectWith: ".sortableConnected"+p
+    }).disableSelection();
+  });
 }
 
 $(document).on("click", ".btnSave",
