@@ -61,48 +61,49 @@ function reducir (partido, NumPunteros, lista){
   return resultados
 }
 
+function seccionGobierno (partido, nombresListaPartido){
+  let combos = []
+
+  listaPartido.splice(listaPartido.indexOf(partido), 1)
+  for (let i = 0; i <= listaPartido.length; i++){
+    combos.push(reducir(partido, i, listaPartido));
+  }
+
+  return combos
+}
+
 function partidoGobernar (partido, nombresListaPartido){
   listaPartido = nombresListaPartido.slice();
-  container = $('.partidoPrincipal');
-  container.empty();
 
-  header = '<li class="ui-state-default seccionContainer">\
+  let container = $('.partidoPrincipal h1[data-name="'+partido+'"]').parent();
+
+  container.children().not(':first-child').remove();
+
+  let header = $('<li class="ui-state-default seccionContainer">\
     <div class= seccion">\
-        <h1>Gobernar</h1>';
+        <h1>Gobernar</h1>');
   container.append(header);
 
-  gobernar = '<div class="subContainer">\
-        <ul class="conjuntoContainer sub">sub\
-        </ul>';
-  listaPartido.splice(listaPartido.indexOf(partido), 1)
-  /*console.log(partido);
-  console.log(listaPartido.length);
-  console.log(listaPartido);*/
-  console.log('------'+partido);
-  console.log(reducir(partido, listaPartido.length, listaPartido));
+  let gobernar = $('<div class="subContainer">');
 
+  let secciones = seccionGobierno(partido, listaPartido);
 
-  nombresListaPartido.forEach(function( partido ) {
-   //add
+  secciones.forEach(function( array ) {
+    let seccion = $('<ul class="conjuntoContainer sub">sub\
+              </ul>');
+    //console.log(array);
+    array.forEach(function( p ) {
+      let opcion = $('<li class="ui-state-default OwO">'+p+'</li>');
+      seccion.append(opcion);
+      //console.log(p);
+    });
+  gobernar.append(seccion);
   });
 
   container.append(gobernar);
 
-/*
-            <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
+  //console.log(secciones);
 
-  gobernarEnemigos = '<ul class="conjuntoContainer'+index+' sub">sub\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-          <li class="ui-state-default OwO">Partidos </li>\
-        </ul> \
-        </div> \
-    </div>       \
-  </li>';
-
-  container.append(jquery);*/
 }
 
 function updateListaCompletaPartido (partido, lista){
@@ -110,10 +111,6 @@ function updateListaCompletaPartido (partido, lista){
   let nombresListaPartido = ListaNombres('.partidoList[data-name="'+partido+'"]', 'li');
   nombresListaPartido.splice(nombresListaPartido.indexOf("Elecciones"), 1);
   partidoGobernar (partido, nombresListaPartido);
-
-/*
-  console.log(partido);
-  console.log(nombresMiniListaPartido);*/
 
 }
 
